@@ -11,11 +11,17 @@ brew tap caskroom/fonts
 
 apps=(
   atom
-  font-fira-code
+  firefox
+  font-meslo-for-powerline
   google-chrome
+  iterm2
+  launchrocket
+  sequelpro
   slack
   sourcetree
   spotify
+  tableplus
+  transmission
   visual-studio-code
   vlc
 )

@@ -3,10 +3,10 @@ if ! is-macos -o ! is-executable ruby -o ! is-executable curl -o ! is-executable
   return
 fi
 
-# ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-# brew update
-# brew upgrade
+brew update
+brew upgrade
 
 # Install packages
 

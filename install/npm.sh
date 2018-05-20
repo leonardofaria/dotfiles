@@ -16,6 +16,7 @@ nvm alias default 8
 
 packages=(
   npm
+  speed-test
 )
 
 npm install -g "${packages[@]}"

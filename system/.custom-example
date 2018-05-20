@@ -1,0 +1,4 @@
+# Add all extra stuff here - Example:
+
+# Add my keys
+ssh-add -K

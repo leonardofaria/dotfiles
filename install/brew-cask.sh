@@ -16,9 +16,10 @@ apps=(
   google-chrome
   iterm2
   launchrocket
-  sequelpro
+  sequel-pro
   slack
   sourcetree
+  spectacle
   spotify
   tableplus
   transmission

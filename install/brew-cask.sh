@@ -11,6 +11,7 @@ brew tap caskroom/fonts
 
 apps=(
   atom
+  docker
   firefox
   font-meslo-for-powerline
   google-chrome

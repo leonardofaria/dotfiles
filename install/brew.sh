@@ -21,7 +21,6 @@ apps=(
   nginx
   python3
   sqlite
-  terminal-parrot
   tree
   unar
   wget

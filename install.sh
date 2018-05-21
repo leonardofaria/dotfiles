@@ -25,11 +25,11 @@ ln -sfv "$DOTFILES_DIR/git/.gitignore" ~
 
 # Package managers & packages
 
-# . "$DOTFILES_DIR/install/brew.sh"
-# . "$DOTFILES_DIR/install/npm.sh"
-# . "$DOTFILES_DIR/install/zsh.sh"
-# . "$DOTFILES_DIR/install/brew-cask.sh"
-# . "$DOTFILES_DIR/install/ruby.sh"
+. "$DOTFILES_DIR/install/brew.sh"
+. "$DOTFILES_DIR/install/npm.sh"
+. "$DOTFILES_DIR/install/zsh.sh"
+. "$DOTFILES_DIR/install/brew-cask.sh"
+. "$DOTFILES_DIR/install/ruby.sh"
 
 . "$DOTFILES_DIR/macos/defaults.sh"
 

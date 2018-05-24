@@ -10,5 +10,6 @@ dockutil --no-restart --add "/Applications/iTerm.app"
 dockutil --no-restart --add "/Applications/TablePlus.app"
 
 dockutil --no-restart --add '~/Downloads' --view fan --display folder --allhomes
+dockutil --no-restart --add '/Applications' --view grid --display folder --allhomes
 
 killall Dock

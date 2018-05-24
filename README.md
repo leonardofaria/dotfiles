@@ -62,6 +62,10 @@ There are lots of customizable Mac settings. Check `macos/defaults.sh`
 
 ## What is not done automatically
 
+### Extra environment variables
+
+Add your extra information environment variables in `system/.custom`.
+
 ### iTerm 2
 
 Open Preferences and in General, check: "Load Preferences from a custom folder or URL". Point the folder to `macos` - There is a file there called `com.googlecode.iterm2.plist` with all setup.

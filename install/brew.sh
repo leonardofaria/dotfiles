@@ -11,6 +11,7 @@ brew upgrade
 # Install packages
 
 apps=(
+  dockutil
   ffmpeg
   git
   git-extras

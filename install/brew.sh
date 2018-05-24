@@ -20,6 +20,7 @@ apps=(
   httpie
   imagemagick
   mysql
+  neofetch
   nginx
   python3
   sqlite

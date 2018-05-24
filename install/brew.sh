@@ -11,6 +11,7 @@ brew upgrade
 # Install packages
 
 apps=(
+  bats
   dockutil
   ffmpeg
   git

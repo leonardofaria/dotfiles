@@ -16,6 +16,7 @@ apps=(
   docker
   firefox
   font-meslo-for-powerline
+  gitify
   google-chrome
   iterm2
   launchrocket

@@ -12,6 +12,7 @@ brew tap caskroom/fonts
 apps=(
   appcleaner
   atom
+  coconutbattery
   docker
   firefox
   font-meslo-for-powerline

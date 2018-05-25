@@ -34,6 +34,7 @@ This is my quick dot files repo created on a Saturday night to make my new old M
 
 - appcleaner
 - atom
+- coconutbattery
 - docker
 - firefox
 - font-meslo-for-powerline

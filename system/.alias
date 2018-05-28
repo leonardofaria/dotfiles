@@ -1,1 +1,2 @@
 alias json="json -c"
+alias ls="exa"

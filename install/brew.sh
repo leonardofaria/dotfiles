@@ -13,6 +13,7 @@ brew upgrade
 apps=(
   bats
   dockutil
+  exa
   ffmpeg
   git
   git-extras

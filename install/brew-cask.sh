@@ -16,6 +16,7 @@ apps=(
   docker
   firefox
   font-meslo-for-powerline
+  geekbench
   gitify
   google-chrome
   iterm2

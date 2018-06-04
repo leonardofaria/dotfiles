@@ -27,6 +27,7 @@ apps=(
   spectacle
   spotify
   tableplus
+  the-unarchiver
   transmission
   visual-studio-code
   vlc

@@ -2,6 +2,8 @@
 
 This is my quick dot files repo started on a Saturday night to make my new old MacBook Air looks like my old new MacBook. It is based in [webpro/dotfiles](https://github.com/webpro/dotfiles/) (you may want to check it out his repo to understand this one if you feel lost).
 
+<img src="https://raw.githubusercontent.com/leonardofaria/dotfiles/master/screenshot.jpg" />
+
 ## How to use it?
 
 - Clone the repo in your home directory: `git clone git@github.com:leonardofaria/dotfiles.git ~/.dotfiles`

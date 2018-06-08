@@ -19,6 +19,7 @@ This is my quick dot files repo created on a Saturday night to make my new old M
 - git-extras
 - htop
 - httpie
+- hugo
 - imagemagick
 - mysql
 - neofetch

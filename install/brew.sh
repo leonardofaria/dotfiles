@@ -19,6 +19,7 @@ apps=(
   git-extras
   htop
   httpie
+  hugo
   imagemagick
   mysql
   neofetch

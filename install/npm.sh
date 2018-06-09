@@ -16,6 +16,12 @@ nvm alias default 8
 
 packages=(
   npm
+  dockly
+  list-scripts
+  npm-check-updates
+  npm-scripts-tree
+  script-list
+  space-hogs
   speed-test
 )
 

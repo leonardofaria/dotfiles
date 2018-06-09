@@ -6,7 +6,8 @@ This is my quick dot files repo started on a Saturday night to make my new old M
 
 ## How to use it?
 
-- Clone the repo in your home directory: `git clone git@github.com:leonardofaria/dotfiles.git ~/.dotfiles`
+- Make sure that you have an updated macOS and Command Line Tools for Xcode: `sudo softwareupdate -i -a && xcode-select --install`
+- Clone the repo in your home directory: `cd ~ & git clone git@github.com:leonardofaria/dotfiles.git ~/.dotfiles`
 - Run `./install.sh`
 
 ## What is installed?
@@ -62,15 +63,36 @@ This is my quick dot files repo started on a Saturday night to make my new old M
 - visual-studio-code
 - vlc
 
+### Quick Look plugins
+
+- betterzip
+- qladdict
+- qlcolorcode
+- qlimagesize
+- qlmarkdown
+- qlstephen
+- qlvideo
+- quicklook-csv
+- quicklook-json
+- suspicious-package
+- webpquicklook
+
 ### Other stuff also installed
 
-- Node 8 via `nvm`
+- Node 8 via `nvm`, with a few global packages:
+  - [dockly](https://www.npmjs.com/package/dockly)
+  - [list-scripts](https://www.npmjs.com/package/list-scripts)
+  - [npm-check-updates](https://www.npmjs.com/package/npm-check-updates)
+  - [npm-scripts-tree](https://www.npmjs.com/package/npm-scripts-tree)
+  - [script-list](https://www.npmjs.com/package/script-list)
+  - [space-hogs](https://www.npmjs.com/package/space-hogs)
+  - [speed-test](https://www.npmjs.com/package/speed-test)
 - Ruby 2.5.1 via `rvm`
-- Oh my zsh, with [powerlevel9k](https://github.com/bhilburn/powerlevel9k) theme and git, rails, ruby, npm and osx plugins.
+- [Oh my zsh](https://github.com/robbyrussell/oh-my-zsh), with [powerlevel9k](https://github.com/bhilburn/powerlevel9k) theme and git, rails, ruby, npm and osx plugins
 
 ## Mac Defaults
 
-There are lots of customizable Mac settings. Check `macos/defaults.sh` for all details.
+There are lots of customizable Mac settings. Check [`macos/defaults.sh`](https://github.com/leonardofaria/dotfiles/blob/master/macos/defaults.sh) for all details.
 
 ### Dock items
 

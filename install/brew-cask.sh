@@ -36,7 +36,7 @@ apps=(
 brew cask install "${apps[@]}"
 
 # Quick Look Plugins (https://github.com/sindresorhus/quick-look-plugins)
-brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json qlimagesize webpquicklook suspicious-package qlvideo
+brew cask install betterzip qladdict quicklook-csv qlcolorcode qlstephen qlmarkdown quicklook-json qlimagesize webpquicklook suspicious-package qlvideo
 
 # Creating Atom symlink
 ln -s /Applications/Atom.app/Contents/Resources/app/atom.sh /usr/local/bin

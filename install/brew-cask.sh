@@ -11,6 +11,7 @@ brew tap caskroom/fonts
 
 apps=(
   appcleaner
+  android-platform-tools
   atom
   coconutbattery
   docker

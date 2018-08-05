@@ -17,6 +17,7 @@ apps=(
   ffmpeg
   git
   git-extras
+  handbrake
   htop
   httpie
   hugo

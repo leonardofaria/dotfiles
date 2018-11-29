@@ -37,6 +37,7 @@ apps=(
   mysql
   neofetch
   nginx
+  postgresql
   python3
   sqlite
   tree

@@ -8,6 +8,7 @@ This is my quick dot files repo started on a Saturday night to make my new old M
 
 - Make sure that you have an updated macOS and Command Line Tools for Xcode: `sudo softwareupdate -i -a && xcode-select --install`
 - Clone the repo in your home directory: `cd ~ & git clone git@github.com:leonardofaria/dotfiles.git ~/.dotfiles`
+- In order to install brew for multiple users, create a group called brew. One way to create a group brew is to open the System Preferences and select Users & Groups. Unlock this screen and press the lower left +. Select the account type Group and name it brew. After creating this group add the users you want to share the brew apps ([source](https://medium.com/@leifhanack/homebrew-multi-user-setup-e10cb5849d59))
 - Run `./install.sh`
 
 ## What is installed?

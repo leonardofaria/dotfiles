@@ -13,8 +13,8 @@ apps=(
   appcleaner
   android-platform-tools
   atom
-  coconutbattery
   chromedriver
+  coconutbattery
   docker
   firefox
   font-meslo-for-powerline
@@ -33,6 +33,7 @@ apps=(
   transmission
   visual-studio-code
   vlc
+  yujitach-menumeters
 )
 
 brew cask install "${apps[@]}"

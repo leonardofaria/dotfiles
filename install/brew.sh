@@ -5,14 +5,17 @@ fi
 
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-sudo chgrp -R brew /usr/local
-sudo chmod -R g+w /usr/local
-sudo chgrp -R brew /Library/Caches/Homebrew/Caskroom
-sudo chgrp -R brew /Library/Caches/Homebrew/Cellar
-sudo chgrp -R brew /Library/Caches/Homebrew/Homebrew
-sudo chmod -R g+w /Library/Caches/Homebrew/Caskroom
-sudo chmod -R g+w /Library/Caches/Homebrew/Cellar
-sudo chmod -R g+w /Library/Caches/Homebrew/Homebrew
+sudo chgrp -R brew /usr/local/Homebrew/Caskroom
+sudo chmod -R g+w /usr/local/Homebrew/Caskroom
+
+sudo chgrp -R brew /usr/local/Homebrew/Cellar
+sudo chmod -R g+w /usr/local/Homebrew/Cellar
+
+sudo chgrp -R brew /usr/local/Homebrew/Homebrew
+sudo chmod -R g+w /usr/local/Homebrew/Homebrew
+
+sudo chgrp -R brew /Library/Caches/Homebrew
+sudo chmod -R g+w /Library/Caches/Homebrew
 
 brew update
 brew upgrade

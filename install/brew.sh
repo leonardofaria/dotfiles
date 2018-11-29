@@ -5,6 +5,11 @@ fi
 
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
+sudo chgrp -R brew /usr/local
+sudo chmod -R g+w /usr/local
+sudo chgrp -R brew /Library/Caches/Homebrew
+sudo chmod -R g+w /Library/Caches/Homebrew
+
 brew update
 brew upgrade
 

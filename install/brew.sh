@@ -23,6 +23,7 @@ brew upgrade
 # Install packages
 
 apps=(
+  ag
   bats
   dockutil
   exa

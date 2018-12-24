@@ -16,6 +16,7 @@ apps=(
   chromedriver
   coconutbattery
   docker
+  dropbox
   firefox
   font-meslo-for-powerline
   geekbench
@@ -28,6 +29,7 @@ apps=(
   sourcetree
   spectacle
   spotify
+  station
   tableplus
   the-unarchiver
   transmission

@@ -26,7 +26,6 @@ apps=(
   ag
   bats
   dockutil
-  exa
   ffmpeg
   git
   git-extras

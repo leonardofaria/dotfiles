@@ -1,2 +1,4 @@
 alias json="json -c"
-alias ls="exa"
+alias ls="colorls"
+alias python="python3"
+alias python2="python2.7"

@@ -18,6 +18,7 @@ apps=(
   docker
   dropbox
   firefox
+  font-hack-nerd-font
   font-meslo-for-powerline
   geekbench
   gitify

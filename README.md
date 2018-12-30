@@ -17,9 +17,9 @@ This is my quick dot files repo started on a Saturday night to make my new old M
 
 > Check the description of the less popular apps
 
+- ag
 - [bats](http://brewformulas.org/Bats) - Bash Automated Testing System
 - [dockutil](https://github.com/kcrawford/dockutil) - Command line tool for managing dock items
-- [exa](https://the.exa.website/) - A modern replacement for `ls`
 - ffmpeg
 - git
 - git-extras
@@ -30,6 +30,7 @@ This is my quick dot files repo started on a Saturday night to make my new old M
 - mysql
 - [neofetch](https://github.com/dylanaraps/neofetch) - A command-line system information tool
 - nginx
+- postgresql
 - python3
 - sqlite
 - tree
@@ -43,10 +44,15 @@ This is my quick dot files repo started on a Saturday night to make my new old M
 > Using brew cask to install Mac app definitely save you a couple hours of browsing
 
 - appcleaner
+- android-platform-tools
 - atom
+- chromedriver
 - coconutbattery
 - docker
+- dropbox
 - firefox
+- font-fira-code
+- font-hack-nerd-font
 - font-meslo-for-powerline
 - geekbench
 - gitify
@@ -58,11 +64,13 @@ This is my quick dot files repo started on a Saturday night to make my new old M
 - sourcetree
 - spectacle
 - spotify
+- station
 - tableplus
 - the-unarchiver
 - transmission
 - visual-studio-code
 - vlc
+- yujitach-menumeters
 
 ### Quick Look plugins
 
@@ -86,6 +94,7 @@ This is my quick dot files repo started on a Saturday night to make my new old M
   - [npm-check-updates](https://www.npmjs.com/package/npm-check-updates)
   - [npm-scripts-tree](https://www.npmjs.com/package/npm-scripts-tree)
   - [script-list](https://www.npmjs.com/package/script-list)
+  - [see-cli](https://github.com/rwu823/see-cli)
   - [space-hogs](https://www.npmjs.com/package/space-hogs)
   - [speed-test](https://www.npmjs.com/package/speed-test)
 - Ruby 2.5.1 via `rvm`

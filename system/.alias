@@ -1,4 +1,5 @@
 alias json="json -c"
 alias ls="colorls"
+alias cat="see"
 alias python="python3"
 alias python2="python2.7"

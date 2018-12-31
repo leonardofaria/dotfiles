@@ -58,7 +58,7 @@ This is my quick dot files repo started on a Saturday night to make my new old M
 - gitify
 - google-chrome
 - iterm2
-- launchrocket
+- rescuetime
 - sequel-pro
 - slack
 - sourcetree

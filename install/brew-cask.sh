@@ -25,7 +25,7 @@ apps=(
   gitify
   google-chrome
   iterm2
-  launchrocket
+  rescuetime
   sequel-pro
   slack
   sourcetree

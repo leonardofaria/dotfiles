@@ -35,6 +35,7 @@ apps=(
   tableplus
   the-unarchiver
   transmission
+  tunnelblick
   visual-studio-code
   vlc
   yujitach-menumeters

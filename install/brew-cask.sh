@@ -25,6 +25,7 @@ apps=(
   gitify
   google-chrome
   iterm2
+  ngrok
   rescuetime
   sequel-pro
   slack

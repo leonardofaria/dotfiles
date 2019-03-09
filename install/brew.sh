@@ -36,6 +36,7 @@ apps=(
   git
   git-extras
   handbrake
+  hh
   htop
   httpie
   hugo

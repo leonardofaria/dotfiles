@@ -34,6 +34,7 @@ apps=(
   dockutil
   ffmpeg
   git
+  git-delta
   git-extras
   handbrake
   hh

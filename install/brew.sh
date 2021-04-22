@@ -32,7 +32,6 @@ apps=(
   ag
   bats
   dockutil
-  ffmpeg
   git
   git-delta
   git-extras
@@ -40,19 +39,12 @@ apps=(
   hh
   htop
   httpie
-  hugo
   imagemagick
-  mysql
   neofetch
-  nginx
-  postgresql
-  python3
-  sqlite
   tree
   unar
   wget
   wifi-password
-  yarn
 )
 
 brew install "${apps[@]}"

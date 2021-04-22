@@ -11,7 +11,7 @@ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB8
 
 . "${DOTFILES_DIR}/system/.rvm"
 
-rvm install 2.5.1
-rvm use 2.5.1 --default
+rvm install 2.6.6
+rvm use 2.6.6 --default
 
 gem install mechanize colorls

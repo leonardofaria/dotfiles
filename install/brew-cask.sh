@@ -11,29 +11,19 @@ brew tap caskroom/fonts
 
 apps=(
   appcleaner
-  android-platform-tools
   atom
-  chromedriver
   coconutbattery
-  docker
-  dropbox
-  firefox
   font-fira-code
   font-hack-nerd-font
   font-meslo-for-powerline
   geekbench
-  gitify
   google-chrome
   iterm2
-  ngrok
   rescuetime
-  sequel-pro
-  slack
   sourcetree
   spectacle
   spotify
   station
-  tableplus
   the-unarchiver
   transmission
   tunnelblick

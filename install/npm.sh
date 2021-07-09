@@ -9,8 +9,8 @@ export DOTFILES_BREW_PREFIX_NVM=`brew --prefix nvm`
 set-config "DOTFILES_BREW_PREFIX_NVM" "$DOTFILES_BREW_PREFIX_NVM" "$DOTFILES_CACHE"
 
 . "${DOTFILES_DIR}/system/.nvm"
-nvm install 8
-nvm alias default 8
+nvm install stable
+nvm alias default stable
 
 # Globally install with npm
 

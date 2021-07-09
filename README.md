@@ -87,7 +87,7 @@ This is my quick dot files repo started on a Saturday night to make my new old M
 
 ### Other stuff also installed
 
-- Node 8 via `nvm`, with a few global packages:
+- Current Node via `nvm`, with a few global packages:
   - [dockly](https://www.npmjs.com/package/dockly)
   - [list-scripts](https://www.npmjs.com/package/list-scripts)
   - [npm-check-updates](https://www.npmjs.com/package/npm-check-updates)

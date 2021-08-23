@@ -30,8 +30,11 @@ brew upgrade
 
 apps=(
   ag
+  bat
   bats
   dockutil
+  duf
+  dust
   ffmpeg
   git
   git-delta

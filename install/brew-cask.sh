@@ -3,50 +3,60 @@ if ! is-macos -o ! is-executable brew; then
   return
 fi
 
-brew tap caskroom/versions
-brew tap caskroom/cask
-brew tap caskroom/fonts
+brew tap homebrew/cask-versions
+brew tap homebrew/cask
+brew tap homebrew/cask-fonts
 
 # Install packages
-
 apps=(
+  1password
   appcleaner
-  android-platform-tools
-  atom
-  chromedriver
   coconutbattery
   docker
-  dropbox
-  firefox
+  ferdi
   font-fira-code
   font-hack-nerd-font
   font-meslo-for-powerline
   geekbench
-  gitify
   google-chrome
   hiddenbar
   iterm2
-  ngrok
+  menumeters
+  rectangle
   rescuetime
   sequel-pro
   slack
   sourcetree
-  spectacle
   spotify
-  station
   tableplus
   the-unarchiver
   transmission
   tunnelblick
   visual-studio-code
   vlc
-  yujitach-menumeters
 )
 
-brew install --cask "${apps[@]}"
+for app in ${apps[*]}
+  do
+    brew install --cask "${app}"
+  done
 
 # Quick Look Plugins (https://github.com/sindresorhus/quick-look-plugins)
-brew install --cask betterzip qladdict quicklook-csv qlcolorcode qlstephen qlmarkdown quicklook-json qlimagesize webpquicklook suspicious-package qlvideo
+plugins=(
+  betterzip
+  qladdict
+  qlcolorcode
+  qlimagesize
+  qlmarkdown
+  qlstephen
+  qlvideo
+  quicklook-csv
+  quicklook-json
+  suspicious-package
+  webpquicklook
+)
 
-# Creating Atom symlink
-ln -s /Applications/Atom.app/Contents/Resources/app/atom.sh /usr/local/bin
+for plugin in ${plugins[*]}
+  do
+    brew install --cask "${plugin}"
+  done

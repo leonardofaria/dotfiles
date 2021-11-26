@@ -43,12 +43,8 @@ apps=(
   hh
   htop
   httpie
-  hugo
   imagemagick
-  mysql
   neofetch
-  nginx
-  postgresql
   python3
   sqlite
   tree
@@ -58,7 +54,10 @@ apps=(
   yarn
 )
 
-brew install "${apps[@]}"
+for app in ${apps[*]}
+  do
+    brew install --cask "${app}"
+  done
 
 export DOTFILES_BREW_PREFIX_COREUTILS=`brew --prefix coreutils`
 set-config "DOTFILES_BREW_PREFIX_COREUTILS" "$DOTFILES_BREW_PREFIX_COREUTILS" "$DOTFILES_CACHE"

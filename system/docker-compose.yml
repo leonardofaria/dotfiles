@@ -1,0 +1,80 @@
+version: '3.7'
+services:
+  plextraktsync:
+    image: ghcr.io/taxel/plextraktsync
+    container_name: plextraktsync
+    volumes:
+      - ~/.dotfiles/plextraktsync_config:/app/config
+    # Run docker-compose run --rm plextraktsync
+    # to create the config needed and authorize Plex / Trakt
+
+
+  ftpd-server:
+    image: stilliard/pure-ftpd:hardened
+    container_name: ftpd-server
+    ports:
+      - 21:21
+      - 20:20
+      - 30000-30009:30000-30009
+    environment:
+      # export LOCAL_IP: $(ifconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}')
+      # export FTP_USER="myuser"
+      # export FTP_PASS="mypassword"
+      PUBLICHOST: $LOCAL_IP
+      FTP_USER_NAME: $FTP_USER
+      FTP_USER_PASS: $FTP_PASS
+      FTP_USER_HOME: /home/ftpuser
+      ADDED_FLAGS: -d -d
+    restart: on-failure
+    volumes:
+      - ~/ftp:/home/ftpuser
+
+
+  # https://github.com/ilteoood/docker-surfshark
+  surfshark:
+    image: ilteoood/docker-surfshark
+    container_name: surfshark
+    environment:
+      # credentials: https://my.surfshark.com/vpn/manual-setup/main
+      # export SURFSHARK_USER="myuser"
+      # export SURFSHARK_PASSWORD="mypassword"
+      SURFSHARK_USER: $SURFSHARK_USER
+      SURFSHARK_PASSWORD: $SURFSHARK_PASSWORD
+      # locations: https://my.surfshark.com/vpn/manual-setup/main
+      SURFSHARK_COUNTRY: ca
+      SURFSHARK_CITY: mon
+      CONNECTION_TYPE: udp
+      LAN_NETWORK: 192.168.0.0/24
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun
+    ports:
+      - 9091:9091
+    restart: unless-stopped
+    dns:
+      - 1.1.1.1
+
+  service_test:
+    image: byrnedo/alpine-curl
+    container_name: alpine-curl
+    command: -L 'https://ipinfo.io'
+    depends_on:
+      - surfshark
+    network_mode: service:surfshark
+    restart: always
+
+  transmission:
+    image: linuxserver/transmission
+    container_name: transmission
+    environment:
+      PUID: 1000
+      PGID: 1000
+      TZ: Americas/Vancouver
+    volumes:
+      - ~/Downloads/torrents:/downloads
+      - ~/Downloads:/watch
+    depends_on:
+      - surfshark
+    network_mode: container:surfshark
+    restart: unless-stopped

@@ -1,6 +1,6 @@
 alias json="json -c"
 alias ls="colorls"
-alias cat="bat"
+alias cat="bat --theme=GitHub "
 alias python="python3"
 alias python2="python2.7"
 alias convert-heic="magick mogrify -monitor -format jpg *.HEIC"

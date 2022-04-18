@@ -56,7 +56,7 @@ apps=(
 
 for app in ${apps[*]}
   do
-    brew install --cask "${app}"
+    brew install "${app}"
   done
 
 export DOTFILES_BREW_PREFIX_COREUTILS=`brew --prefix coreutils`

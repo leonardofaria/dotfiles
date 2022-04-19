@@ -35,11 +35,11 @@ apps=(
   dockutil
   duf
   dust
+  exa
   ffmpeg
   git
   git-delta
   git-extras
-  handbrake
   hh
   htop
   httpie

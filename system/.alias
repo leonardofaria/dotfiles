@@ -1,5 +1,5 @@
 alias json="json -c"
-alias ls="colorls"
+alias ls="exa"
 alias cat="bat --theme=GitHub "
 alias python="python3"
 alias python2="python2.7"

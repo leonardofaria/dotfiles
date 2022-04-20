@@ -12,7 +12,7 @@ apps=(
   1password
   appcleaner
   coconutbattery
-  docker
+  # docker
   ferdi
   font-fira-code
   font-hack-nerd-font
@@ -21,6 +21,7 @@ apps=(
   google-chrome
   hiddenbar
   iterm2
+  karabiner-elements
   menumeters
   rectangle
   rescuetime

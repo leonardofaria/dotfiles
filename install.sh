@@ -18,6 +18,7 @@ if is-executable git -a -d "$DOTFILES_DIR/.git"; then git --work-tree="$DOTFILES
 # Bunch of symlinks
 
 ln -sfv "$DOTFILES_DIR/runcom/.gemrc" ~
+ln -sfv "$DOTFILES_DIR/runcom/.p10k.zsh" ~
 ln -sfv "$DOTFILES_DIR/runcom/.yarnrc" ~
 ln -sfv "$DOTFILES_DIR/runcom/.zprofile" ~
 ln -sfv "$DOTFILES_DIR/git/.gitconfig" ~

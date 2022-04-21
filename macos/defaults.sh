@@ -1,15 +1,16 @@
 # Based on https://github.com/webpro/dotfiles/blob/master/macos/defaults.sh
 # I commented what I don't need
+# More commands: https://macos-defaults.com/
 
 # COMPUTER_NAME="MacLeozeraAir"
 
-# osascript -e 'tell application "System Preferences" to quit'
+osascript -e 'tell application "System Preferences" to quit'
 
 # Ask for the administrator password upfront
-# sudo -v
+sudo -v
 
 # Keep-alive: update existing `sudo` time stamp until `.macos` has finished
-# while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 ###############################################################################
 # General UI/UX                                                               #
@@ -414,8 +415,8 @@ sudo mdutil -E / > /dev/null
 defaults write com.apple.terminal StringEncodings -array 4
 
 # Use "Pro" theme (black background color)
-defaults write com.apple.terminal "Default Window Settings" -string "Pro"
-defaults write com.apple.terminal "Startup Window Settings" -string "Pro"
+# defaults write com.apple.terminal "Default Window Settings" -string "Pro"
+# defaults write com.apple.terminal "Startup Window Settings" -string "Pro"
 
 # Disable audible and visual bells
 # defaults write com.apple.terminal "Bell" -bool false
@@ -468,6 +469,13 @@ defaults write com.apple.commerce AutoUpdate -bool true
 
 # Allow the App Store to reboot machine on macOS updates
 defaults write com.apple.commerce AutoUpdateRestartRequired -bool true
+
+###############################################################################
+# Other                                                                       #
+###############################################################################
+
+# Enable Startup Chime
+nvram StartupMute=%00
 
 ###############################################################################
 # Kill affected applications                                                  #

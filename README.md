@@ -126,3 +126,7 @@ Use the Sync Settings feature to restore settings from a different computer.
 ### Chrome
 
 Log in with a Google account to restore bookmarks, extensions, etc.
+
+### ssh keys
+
+Run `ssh-keygen -t ed25519 -C "your_email@example.com"` - [More instructions](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)

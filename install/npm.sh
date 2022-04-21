@@ -17,13 +17,13 @@ nvm alias default stable
 packages=(
   npm
   dockly
-  fast
   list-scripts
   npm-check-updates
   npm-scripts-tree
   script-list
   see-cli
   space-hogs
+  speed-test
 )
 
 npm install -g "${packages[@]}"

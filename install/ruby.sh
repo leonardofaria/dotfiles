@@ -11,5 +11,5 @@ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB8
 
 . "${DOTFILES_DIR}/system/.rvm"
 
-rvm install 2.7.5
-rvm use 2.7.5 --default
+rvm install 3
+rvm use 3 --default

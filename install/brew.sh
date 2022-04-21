@@ -37,6 +37,7 @@ apps=(
   dust
   exa
   ffmpeg
+  fig
   git
   git-delta
   git-extras
@@ -46,6 +47,7 @@ apps=(
   imagemagick
   neofetch
   python3
+  raycast
   sqlite
   tree
   unar

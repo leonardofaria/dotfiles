@@ -45,6 +45,7 @@ apps=(
   htop
   httpie
   imagemagick
+  meetingbar
   neofetch
   python3
   raycast

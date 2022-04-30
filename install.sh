@@ -23,6 +23,8 @@ ln -sfv "$DOTFILES_DIR/runcom/.yarnrc" ~
 ln -sfv "$DOTFILES_DIR/runcom/.zprofile" ~
 ln -sfv "$DOTFILES_DIR/git/.gitconfig" ~
 ln -sfv "$DOTFILES_DIR/git/.gitignore" ~
+# This fix husky git hooks called inside Source Tree
+ln -sfv "$DOTFILES_DIR/git/.huskyrc" ~
 
 # Package managers & packages
 

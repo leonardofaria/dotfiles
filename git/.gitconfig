@@ -70,6 +70,12 @@
   untracked = cyan
 
 [delta]
-  side-by-side = true
+  # See all config with delta --show-config
+  side-by-side = false
+  line-numbers = true
+  light = true
+  tabs = 2
+  # See all themes with delta --show-syntax-themes
+  features = GitHub
 [commit]
 	template = /Users/leonardo/.stCommitMsg

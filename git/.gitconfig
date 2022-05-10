@@ -6,7 +6,7 @@
   user = leonardofaria
 
 [core]
-	excludesfile = ~/.gitignore
+	excludesfile = /Users/leonardo/.gitignore
 	precomposeunicode = true
 	autocrlf = ""
 	pager = delta
@@ -14,7 +14,7 @@
 
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 
 [mergetool "sourcetree"]
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
@@ -43,6 +43,7 @@
 	recent-branches = !git branch --sort=-committerdate | head
 	cleanup = !git reset --hard && git clean -f
 	authors = !git log --format='%aN <%aE>' | grep -v 'users.noreply.github.com' | sort -u --ignore-case
+  commits-day = !git log --date=short --pretty=format:%ad | sort | uniq -c
 
 [diff]
 	algorithm = histogram
@@ -70,3 +71,5 @@
 
 [delta]
   side-by-side = true
+[commit]
+	template = /Users/leonardo/.stCommitMsg

@@ -1,5 +1,5 @@
 # Fig pre block. Keep at the top of this file.
-. "$HOME/.fig/shell/zprofile.pre.zsh"
+[[ -f "$HOME/.fig/shell/zprofile.pre.zsh" ]] && . "$HOME/.fig/shell/zprofile.pre.zsh"
 [[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
 
 # Resolve DOTFILES_DIR (assuming ~/.dotfiles on distros without readlink and/or $BASH_SOURCE/$0)
@@ -55,7 +55,6 @@ unset READLINK CURRENT_SCRIPT SCRIPT_PATH DOTFILE EXTRAFILE
 # Export
 
 export DOTFILES_DIR DOTFILES_EXTRA_DIR
-eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Fig post block. Keep at the bottom of this file.
-. "$HOME/.fig/shell/zprofile.post.zsh"
+[[ -f "$HOME/.fig/shell/zprofile.post.zsh" ]] && . "$HOME/.fig/shell/zprofile.post.zsh"

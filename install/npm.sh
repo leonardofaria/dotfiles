@@ -17,6 +17,7 @@ nvm alias default stable
 packages=(
   npm
   dockly
+  ffmpeg-progressbar-cli
   list-scripts
   npm-check-updates
   npm-scripts-tree

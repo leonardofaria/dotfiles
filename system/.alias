@@ -5,6 +5,7 @@ alias cat="see"
 alias python="python3"
 alias python2="python2.7"
 alias convert-heic="magick mogrify -monitor -format jpg *.HEIC"
+alias branch="git branch --sort=-committerdate | cut -c 3- | gum choose --no-limit | xargs git checkout "
 
 # HSTR configuration - add this to ~/.bashrc
 alias hh=hstr                    # hh to be alias for hstr

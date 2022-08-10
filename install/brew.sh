@@ -41,6 +41,7 @@ apps=(
   git
   git-delta
   git-extras
+  gum
   hh
   htop
   httpie

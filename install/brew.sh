@@ -53,6 +53,7 @@ apps=(
   sqlite
   tree
   unar
+  viddy
   wget
   wifi-password
   yarn

@@ -18,6 +18,7 @@ services:
       - 30000-30009:30000-30009
     environment:
       # export LOCAL_IP: $(ifconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}')
+      # export LOCAL_IP=$(ipconfig getifaddr en0)
       # export FTP_USER="myuser"
       # export FTP_PASS="mypassword"
       PUBLICHOST: $LOCAL_IP
@@ -31,6 +32,10 @@ services:
 
 
   # https://github.com/ilteoood/docker-surfshark
+  # we can test this container with:
+  #   docker run -it --net=container:surfshark alpine /bin/sh
+  #   apk add --no-cache curl
+  #   curl -L https://ipinfo.io/
   surfshark:
     image: ilteoood/docker-surfshark
     container_name: surfshark
@@ -41,8 +46,8 @@ services:
       SURFSHARK_USER: $SURFSHARK_USER
       SURFSHARK_PASSWORD: $SURFSHARK_PASSWORD
       # locations: https://my.surfshark.com/vpn/manual-setup/main
-      SURFSHARK_COUNTRY: ca
-      SURFSHARK_CITY: mon
+      SURFSHARK_COUNTRY: br
+      SURFSHARK_CITY: sao
       CONNECTION_TYPE: udp
       LAN_NETWORK: 192.168.0.0/24
     cap_add:
@@ -60,7 +65,8 @@ services:
   service_test:
     image: byrnedo/alpine-curl
     container_name: alpine-curl
-    command: -L 'https://ipinfo.io'
+    # export IPINFO_TOKEN="ABCDEFGHIJKLM"
+    command: -i -L 'https://ipinfo.io/?token=$IPINFO_TOKEN'
     depends_on:
       - surfshark
     network_mode: service:surfshark

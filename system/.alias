@@ -7,6 +7,7 @@ alias python="python3"
 alias python2="python2.7"
 alias convert-heic="magick mogrify -monitor -format jpg *.HEIC"
 alias branch="rm .git/index.lock; git branch --sort=-committerdate | cut -c 3- | gum choose --no-limit | xargs git checkout "
+alias amend-push="git commit -a --amend --no-edit --no-verify && git push -f --no-verify"
 
 # HSTR configuration - add this to ~/.bashrc
 alias hh=hstr                    # hh to be alias for hstr

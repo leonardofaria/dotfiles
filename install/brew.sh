@@ -23,46 +23,9 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 # sudo chgrp -R brew /Library/Caches/Homebrew
 # sudo chmod -R g+w /Library/Caches/Homebrew
 
-brew update
-brew upgrade
-
-# Install packages
-
-apps=(
-  ag
-  bat
-  bats
-  dockutil
-  duf
-  dust
-  exa
-  ffmpeg
-  fig
-  git
-  git-delta
-  git-extras
-  gum
-  hh
-  htop
-  httpie
-  imagemagick
-  meetingbar
-  neofetch
-  python3
-  raycast
-  sqlite
-  tree
-  unar
-  viddy
-  wget
-  wifi-password
-  yarn
-)
-
-for app in ${apps[*]}
-  do
-    brew install "${app}"
-  done
+# Install packages via Brewfile
+# Tips: https://gist.github.com/ChristopherA/a579274536aab36ea9966f301ff14f3f
+brew bundle install
 
 export DOTFILES_BREW_PREFIX_COREUTILS=`brew --prefix coreutils`
 set-config "DOTFILES_BREW_PREFIX_COREUTILS" "$DOTFILES_BREW_PREFIX_COREUTILS" "$DOTFILES_CACHE"

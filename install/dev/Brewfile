@@ -1,0 +1,16 @@
+tap "homebrew/cask-versions"
+tap "homebrew/cask"
+
+brew "direnv"
+brew "httpie"
+brew "postico"
+brew "watchman"
+
+cask "figma"
+cask "graphiql"
+cask "insomnia"
+cask "loom"
+cask "sequel-pro"
+cask "sourcetree"
+cask "tableplus"
+cask "visual-studio-code"

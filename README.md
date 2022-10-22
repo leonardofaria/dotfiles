@@ -38,11 +38,10 @@ Check `install/Brewfile` and `install/dev/Brewfile`
   - [npm-check-updates](https://www.npmjs.com/package/npm-check-updates)
   - [npm-scripts-tree](https://www.npmjs.com/package/npm-scripts-tree)
   - [script-list](https://www.npmjs.com/package/script-list)
-  - [see-cli](https://github.com/rwu823/see-cli)
   - [space-hogs](https://www.npmjs.com/package/space-hogs)
   - [speed-test](https://www.npmjs.com/package/speed-test)
-- Ruby 2.5.1 via `rvm`
-- [Oh my zsh](https://github.com/robbyrussell/oh-my-zsh), with [powerlevel9k](https://github.com/bhilburn/powerlevel9k) theme and git, rails, ruby, npm and osx plugins
+- Ruby 3 via `rvm`
+- [Oh my zsh](https://github.com/robbyrussell/oh-my-zsh), with powerlevel10k theme and git, rails, ruby, npm and osx plugins
 
 ## Mac Defaults
 

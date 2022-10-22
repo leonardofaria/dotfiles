@@ -15,7 +15,7 @@ PATH="$DOTFILES_DIR/bin:$PATH"
 
 if is-executable git -a -d "$DOTFILES_DIR/.git"; then git --work-tree="$DOTFILES_DIR" --git-dir="$DOTFILES_DIR/.git" pull origin master; fi
 
-# Bunch of symlinks
+echo "➡️  Setting up symlinks"
 
 ln -sfv "$DOTFILES_DIR/runcom/.gemrc" ~
 ln -sfv "$DOTFILES_DIR/runcom/.p10k.zsh" ~
@@ -28,12 +28,19 @@ ln -sfv "$DOTFILES_DIR/git/.huskyrc" ~
 
 # Package managers & packages
 
+echo "➡️  Setting up Brew"
 . "$DOTFILES_DIR/install/brew.sh"
+
+echo "➡️  Setting up Node/NPM"
 . "$DOTFILES_DIR/install/npm.sh"
-. "$DOTFILES_DIR/install/brew-cask.sh"
+
+echo "➡️  Setting up Ruby"
 . "$DOTFILES_DIR/install/ruby.sh"
 
+echo "➡️  Setting up Mac things"
 . "$DOTFILES_DIR/macos/defaults.sh"
+
+echo "➡️  Setting up ZSH"
 . "$DOTFILES_DIR/install/zsh.sh"
 
 # Install extra stuff

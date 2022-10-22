@@ -1,9 +1,13 @@
-if ! is-macos -o ! is-executable ruby -o ! is-executable curl -o ! is-executable git; then
+if ! is-executable ruby -o ! is-executable curl -o ! is-executable git; then
   echo "Skipped: Homebrew (missing: ruby, curl and/or git)"
   return
 fi
 
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+if is-executable brew; then
+  echo "Skipped: Homebrew install (already installed)"
+else
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
 
 # Optional: in order to install brew for multiple users, create a group called brew.
 # One way to create a group brew is to open the System Preferences and select Users & Groups.
@@ -25,7 +29,8 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 
 # Install packages via Brewfile
 # Tips: https://gist.github.com/ChristopherA/a579274536aab36ea9966f301ff14f3f
-brew bundle install
+brew bundle install --file=install/Brewfile
+brew bundle install --file=install/dev/Brewfile
 
 export DOTFILES_BREW_PREFIX_COREUTILS=`brew --prefix coreutils`
 set-config "DOTFILES_BREW_PREFIX_COREUTILS" "$DOTFILES_BREW_PREFIX_COREUTILS" "$DOTFILES_CACHE"

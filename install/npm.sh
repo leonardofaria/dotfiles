@@ -22,7 +22,6 @@ packages=(
   npm-check-updates
   npm-scripts-tree
   script-list
-  see-cli
   space-hogs
   speed-test
 )

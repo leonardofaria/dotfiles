@@ -21,6 +21,7 @@ ln -sfv "$DOTFILES_DIR/runcom/.gemrc" ~
 ln -sfv "$DOTFILES_DIR/runcom/.p10k.zsh" ~
 ln -sfv "$DOTFILES_DIR/runcom/.yarnrc" ~
 ln -sfv "$DOTFILES_DIR/runcom/.zprofile" ~
+ln -sfv "$DOTFILES_DIR/runcom/.npmrc" ~
 ln -sfv "$DOTFILES_DIR/git/.gitconfig" ~
 ln -sfv "$DOTFILES_DIR/git/.gitignore" ~
 # This fix husky git hooks called inside Source Tree

@@ -97,3 +97,5 @@
 	template = /Users/leonardo/.stCommitMsg
 [init]
 	defaultBranch = main
+[fetch]
+	prune = true

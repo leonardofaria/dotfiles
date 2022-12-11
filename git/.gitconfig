@@ -45,6 +45,22 @@
 	authors = !git log --format='%aN <%aE>' | grep -v 'users.noreply.github.com' | sort -u --ignore-case
   commits-day = !git log --date=short --pretty=format:%ad | sort | uniq -c
 
+  # Github - https://salferrarello.com/git-alias-open-pull-request-github/
+  pr = "!f() { \
+      open \"$(git ls-remote --get-url $(git config --get branch.$(git rev-parse --abbrev-ref HEAD).remote) \
+      | sed 's|git@github.com:\\(.*\\)$|https://github.com/\\1|' \
+      | sed 's|\\.git$||'; \
+      )/compare/$(\
+      git config --get branch.$(git rev-parse --abbrev-ref HEAD).merge | cut -d '/' -f 3- \
+      )?expand=1\"; \
+  }; f"
+  hub = "!f() { \
+      open \"$(git ls-remote --get-url \
+      | sed 's|git@github.com:\\(.*\\)$|https://github.com/\\1|' \
+      | sed 's|\\.git$||'; \
+      )\"; \
+  }; f"
+
 [diff]
 	algorithm = histogram
 
@@ -79,3 +95,5 @@
   features = GitHub
 [commit]
 	template = /Users/leonardo/.stCommitMsg
+[init]
+	defaultBranch = main

@@ -3,6 +3,7 @@ alias ls="exa"
 alias cat="bat --theme=GitHub "
 alias watch="viddy"
 alias convert-heic="magick mogrify -monitor -format jpg *.HEIC"
+alias speed-test="repeat 10000 { date +\"%T\"; fast -u --single-line; sleep 1 }"
 alias branch="rm .git/index.lock; git branch --sort=-committerdate | cut -c 3- | gum choose --no-limit | xargs git checkout "
 alias amend-push="git commit -a --amend --no-edit --no-verify && git push -f --no-verify"
 

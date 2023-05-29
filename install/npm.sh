@@ -24,7 +24,6 @@ packages=(
   npm-scripts-tree
   script-list
   space-hogs
-  speed-test
 )
 
 npm install -g "${packages[@]}"

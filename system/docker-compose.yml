@@ -1,13 +1,12 @@
-version: '3.7'
+version: "3.7"
 services:
   plextraktsync:
-    image: ghcr.io/taxel/plextraktsync:0.16.5
+    image: ghcr.io/taxel/plextraktsync
     container_name: plextraktsync
     volumes:
-      - ~/.dotfiles/plextraktsync_config:/app/config
+      - ~/.dotfiles/plextraktsync:/app/config
     # Run docker-compose run --rm plextraktsync
     # to create the config needed and authorize Plex / Trakt
-
 
   ftpd-server:
     image: stilliard/pure-ftpd:hardened
@@ -29,7 +28,6 @@ services:
     restart: on-failure
     volumes:
       - ~/ftp:/home/ftpuser
-
 
   # https://github.com/ilteoood/docker-surfshark
   # we can test this container with:

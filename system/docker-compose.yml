@@ -44,7 +44,7 @@ services:
       SURFSHARK_USER: $SURFSHARK_USER
       SURFSHARK_PASSWORD: $SURFSHARK_PASSWORD
       # locations: https://my.surfshark.com/vpn/manual-setup/main
-      SURFSHARK_COUNTRY: br
+      SURFSHARK_COUNTRY: rhk_br
       SURFSHARK_CITY: sao
       CONNECTION_TYPE: udp
       LAN_NETWORK: 192.168.0.0/24

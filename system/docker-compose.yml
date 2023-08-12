@@ -29,36 +29,27 @@ services:
     volumes:
       - ~/ftp:/home/ftpuser
 
-  # https://github.com/ilteoood/docker-surfshark
-  # we can test this container with:
-  #   docker run -it --net=container:surfshark alpine /bin/sh
-  #   apk add --no-cache curl
-  #   curl -L https://ipinfo.io/
   surfshark:
-    image: ilteoood/docker-surfshark
+    image: haugene/transmission-openvpn
     container_name: surfshark
-    environment:
-      # credentials: https://my.surfshark.com/vpn/manual-setup/main
-      # export SURFSHARK_USER="myuser"
-      # export SURFSHARK_PASSWORD="mypassword"
-      SURFSHARK_USER: $SURFSHARK_USER
-      SURFSHARK_PASSWORD: $SURFSHARK_PASSWORD
-      # locations: https://my.surfshark.com/vpn/manual-setup/main
-      SURFSHARK_COUNTRY: rhk_br
-      SURFSHARK_CITY: sao
-      CONNECTION_TYPE: udp
-      LAN_NETWORK: 192.168.0.0/24
     cap_add:
       - NET_ADMIN
-    devices:
-      - /dev/net/tun
+    volumes:
+      - "~/Downloads/torrents/:/data"
+      - "~/Downloads/torrents/config/:/config"
+    environment:
+      OPENVPN_PROVIDER: SURFSHARK
+      OPENVPN_CONFIG: br-sao.prod.surfshark.com_tcp
+      OPENVPN_USERNAME: $SURFSHARK_USER
+      OPENVPN_PASSWORD: $SURFSHARK_PASSWORD
+      LOCAL_NETWORK: 192.168.0.0/16
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
     ports:
       - 9091:9091
-      - 51413:51413
-      - 51413:51413/udp
     restart: unless-stopped
-    dns:
-      - 1.1.1.1
 
   service_test:
     image: byrnedo/alpine-curl
@@ -69,18 +60,3 @@ services:
       - surfshark
     network_mode: service:surfshark
     restart: always
-
-  transmission:
-    image: linuxserver/transmission
-    container_name: transmission
-    environment:
-      PUID: 1000
-      PGID: 1000
-      TZ: Americas/Vancouver
-    volumes:
-      - ~/Downloads/torrents:/downloads
-      - ~/Downloads:/watch
-    depends_on:
-      - surfshark
-    network_mode: service:surfshark
-    restart: unless-stopped

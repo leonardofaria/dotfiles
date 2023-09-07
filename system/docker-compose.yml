@@ -16,7 +16,6 @@ services:
       - 20:20
       - 30000-30009:30000-30009
     environment:
-      # export LOCAL_IP: $(ifconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}')
       # export LOCAL_IP=$(ipconfig getifaddr en0)
       # export FTP_USER="myuser"
       # export FTP_PASS="mypassword"
@@ -49,7 +48,7 @@ services:
         max-size: 10m
     ports:
       - 9091:9091
-    restart: unless-stopped
+    restart: always
 
   service_test:
     image: byrnedo/alpine-curl
@@ -60,3 +59,15 @@ services:
       - surfshark
     network_mode: service:surfshark
     restart: always
+
+  easydocker:
+    image: qfdk/easydockerweb
+    container_name: easydocker
+    environment:
+      EDW_USERNAME: $EASYDOCKERWEB_USER
+      EDW_PASSWORD: $EASYDOCKERWEB_PASS
+    ports:
+      - 3000:3000
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock

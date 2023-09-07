@@ -1,49 +1,50 @@
 [user]
-	name = Leonardo Faria
-	email = leonardofaria@gmail.com
+  name = Leonardo Faria
+  email = leonardofaria@gmail.com
 
 [github]
   user = leonardofaria
 
 [core]
-	excludesfile = /Users/leonardo/.gitignore
-	precomposeunicode = true
-	autocrlf = ""
-	pager = delta
-	edit = code
+  excludesfile = ~/.gitignore
+  precomposeunicode = true
+  autocrlf = ""
+  pager = delta
+  edit = code
 
 [difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
+  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+  path =
 
 [mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+  cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  trustExitCode = true
 
 [http]
-	sslverify = false
+  sslverify = false
 
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
-	required = true
+  clean = git-lfs clean %f
+  smudge = git-lfs smudge %f
+  required = true
 
 [push]
-	default = current
+  default = current
 
 [alias]
-	st = status --short --branch
-	graph = log --oneline --graph --decorate
-	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
-	ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
-	lds = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+  st = status --short --branch
+  graph = log --oneline --graph --decorate
+  ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+  ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+  lds = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
   log-summary = log --pretty=format:'- [%h] %s %b' --no-merges --reverse
-	conflicts = diff --name-only --diff-filter=U
-	undo = !git reset --hard $(git rev-parse --abbrev-ref HEAD)@{${1-1}}
-	local-branches = !git branch -vv | cut -c 3- | awk '$3 !~/\\[/ { print $1 }'
-	recent-branches = !git branch --sort=-committerdate | head
-	cleanup = !git reset --hard && git clean -f
-	authors = !git log --format='%aN <%aE>' | grep -v 'users.noreply.github.com' | sort -u --ignore-case
+  conflicts = diff --name-only --diff-filter=U
+  undo = !git reset --hard $(git rev-parse --abbrev-ref HEAD)@{${1-1}}
+  local-branches = !git branch -vv | cut -c 3- | awk '$3 !~/\\[/ { print $1 }'
+  recent-branches = !git branch --sort=-committerdate | head
+  previous-branch = checkout @{-1}
+  cleanup = !git reset --hard && git clean -f
+  authors = !git log --format='%aN <%aE>' | grep -v 'users.noreply.github.com' | sort -u --ignore-case
   commits-day = !git log --date=short --pretty=format:%ad | sort | uniq -c
 
   # Github - https://salferrarello.com/git-alias-open-pull-request-github/
@@ -63,7 +64,7 @@
   }; f"
 
 [diff]
-	algorithm = histogram
+  algorithm = histogram
 
 [color]
   branch = auto
@@ -95,8 +96,8 @@
   # See all themes with delta --show-syntax-themes
   features = GitHub
 [commit]
-	template = /Users/leonardo/.stCommitMsg
+  template = /Users/leonardo/.stCommitMsg
 [init]
-	defaultBranch = main
+  defaultBranch = main
 [fetch]
-	prune = true
+  prune = true

@@ -24,6 +24,7 @@ packages=(
   npm-scripts-tree
   script-list
   space-hogs
+  @antfu/ni
 )
 
 npm install -g "${packages[@]}"

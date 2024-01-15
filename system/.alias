@@ -4,8 +4,9 @@ alias cat="bat --theme=GitHub "
 alias watch="viddy"
 alias convert-heic="magick mogrify -monitor -format jpg *.HEIC"
 alias speed-test="repeat 10000 { date +\"%T\"; fast -u --single-line; sleep 1 }"
-alias branch="git branch --sort=-committerdate | cut -c 3- | head -n 20 | gum filter | xargs git checkout "
+alias branch="rm .git/index.lock; git branch --sort=-committerdate | cut -c 3- | head -n 20 | gum filter | xargs git checkout "
 alias amend-push="git commit -a --amend --no-edit --no-verify && git push -f --no-verify"
+alias update-staging="git checkout staging && git merge main && git push origin staging && git checkout -"
 
 # HSTR configuration - add this to ~/.bashrc
 alias hh=hstr                    # hh to be alias for hstr

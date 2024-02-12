@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   plextraktsync:
-    image: ghcr.io/taxel/plextraktsync
+    image: ghcr.io/taxel/plextraktsync:0.28.17
     container_name: plextraktsync
     volumes:
       - ~/.dotfiles/plextraktsync:/app/config

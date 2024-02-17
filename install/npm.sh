@@ -20,6 +20,7 @@ packages=(
   fast-cli
   ffmpeg-progressbar-cli
   list-scripts
+  macos-focus-mode
   npm-check-updates
   npm-scripts-tree
   script-list

@@ -1,0 +1,64 @@
+#!/usr/bin/env bun
+
+import process from "process";
+import { exec as _exec } from "node:child_process";
+import { parse } from "node:path";
+import { promisify } from "node:util";
+import { readdir } from "fs/promises";
+
+const exec = promisify(_exec);
+const EXTENSIONS = ["mkv", "mp4"];
+
+export const script = async () => {
+  const [, , input, output, extraParams] = process.argv;
+
+  const ls = await readdir(input, { withFileTypes: true });
+  let files: string[] = [];
+
+  ls.forEach((file) => {
+    EXTENSIONS.map((extension) => {
+      if (file.name.endsWith(extension)) {
+        files.push(file.name);
+      }
+    });
+  });
+
+  files = files.sort();
+
+  console.log("date +'%Y/%m/%d %H:%M' && ");
+
+  for (const file of files) {
+    let cmd = `ffmpeg-bar `;
+
+    const fileWithPath = `"${input}/${file}"`;
+    cmd += `-i ${fileWithPath} `;
+    const parsedFile = parse(file);
+    let outputFileWithPath = `"${output}/${parsedFile.name}-converted${parsedFile.ext}"`;
+
+    const { stdout: resolution } = await exec(
+      `ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=s=x:p=0 ${fileWithPath}`
+    );
+
+    if (!resolution.includes("1280x720")) {
+      cmd += '-vf "scale=-1:720" ';
+      outputFileWithPath = outputFileWithPath.replace("1080p", "720p");
+    }
+
+    cmd += "-c:v libx265 "; // video codec
+    cmd += "-map 0:v "; // selects all video streams from the input file
+    cmd += "-map 0:a:0 -map 0:s "; // selects the first audio stream
+    cmd += "-map 0:s "; // selects all subtitle streams
+    cmd += "-c:a:0 aac "; // audio codec: AAC
+    cmd += "-c:s copy "; // preserves the subtitles
+    if (extraParams) cmd += extraParams;
+
+    cmd += ` ${outputFileWithPath} &&`;
+
+    console.log(cmd);
+    console.log("date +'%Y/%m/%d %H:%M' && ");
+  }
+
+  console.log("date +'%Y/%m/%d %H:%M'");
+};
+
+await script();

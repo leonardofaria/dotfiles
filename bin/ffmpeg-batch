@@ -1,10 +1,10 @@
 #!/usr/bin/env bun
 
-import process from "process";
+import process from "node:process";
 import { exec as _exec } from "node:child_process";
 import { parse } from "node:path";
 import { promisify } from "node:util";
-import { readdir } from "fs/promises";
+import { readdir } from "node:fs/promises";
 
 const exec = promisify(_exec);
 const EXTENSIONS = ["mkv", "mp4"];
@@ -25,10 +25,8 @@ export const script = async () => {
 
   files = files.sort();
 
-  console.log("date +'%Y/%m/%d %H:%M' && ");
-
   for (const file of files) {
-    let cmd = `ffmpeg-bar `;
+    let cmd = `date +'%Y/%m/%d %H:%M' && ffmpeg-bar `;
 
     const fileWithPath = `"${input}/${file}"`;
     cmd += `-i ${fileWithPath} `;
@@ -55,7 +53,6 @@ export const script = async () => {
     cmd += ` ${outputFileWithPath} &&`;
 
     console.log(cmd);
-    console.log("date +'%Y/%m/%d %H:%M' && ");
   }
 
   console.log("date +'%Y/%m/%d %H:%M'");

@@ -3,7 +3,7 @@ if ! is-executable brew -o ! is-executable git; then
   return
 fi
 
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 
 export DOTFILES_BREW_PREFIX_NVM=`brew --prefix nvm`
 set-config "DOTFILES_BREW_PREFIX_NVM" "$DOTFILES_BREW_PREFIX_NVM" "$DOTFILES_CACHE"
@@ -12,8 +12,13 @@ set-config "DOTFILES_BREW_PREFIX_NVM" "$DOTFILES_BREW_PREFIX_NVM" "$DOTFILES_CAC
 nvm install stable
 nvm alias default stable
 
-# Globally install with npm
+# install bun as well
+curl -fsSL https://bun.sh/install | bash
 
+# and pnpm
+curl -fsSL https://get.pnpm.io/install.sh | sh -
+
+# Globally install with npm
 packages=(
   npm
   dockly
@@ -28,4 +33,4 @@ packages=(
   @antfu/ni
 )
 
-npm install -g "${packages[@]}"
+pnpm install -g "${packages[@]}"

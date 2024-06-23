@@ -59,11 +59,6 @@ Note: this will remove all your current dock items.
 
 Add your extra information environment variables in `system/.custom`.
 
-### iTerm 2
-
-- Open Preferences and in General, check: "Load Preferences from a custom folder or URL". Point the folder to `macos` - There is a file there called `com.googlecode.iterm2.plist` with all setup.
-- Import the file `macos/github-light-default.itermcolors` to get the GitHub colour scheme.
-
 ### VS Code
 
 Use the Sync Settings feature to restore settings from a different computer.

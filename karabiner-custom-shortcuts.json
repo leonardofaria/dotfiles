@@ -1,16 +1,18 @@
 {
-  "title": "Zoom",
+  "title": "Google Meet",
   "rules": [
     {
-      "description": "Mute/unmute",
+      "description": "Switch to Chrome",
       "manipulators": [
         {
           "conditions": [
             {
-              "bundle_identifiers": [
-                "us.zoom.xos"
-              ],
-              "type": "frontmost_application_if"
+              "type": "device_if",
+              "identifiers": [
+                {
+                  "vendor_id": 32905
+                }
+              ]
             }
           ],
           "from": {
@@ -21,11 +23,7 @@
           },
           "to": [
             {
-              "key_code": "a",
-              "modifiers": [
-                "left_command",
-                "left_shift"
-              ]
+              "shell_command": "open '/Applications/Google Chrome Canary.app'"
             }
           ],
           "type": "basic"
@@ -33,15 +31,21 @@
       ]
     },
     {
-      "description": "Start/stop video",
+      "description": "Turn the microphone on/off",
       "manipulators": [
         {
           "conditions": [
             {
-              "bundle_identifiers": [
-                "us.zoom.xos"
-              ],
+              "bundle_identifiers": ["com.google.Chrome.canary"],
               "type": "frontmost_application_if"
+            },
+            {
+              "type": "device_if",
+              "identifiers": [
+                {
+                  "vendor_id": 32905
+                }
+              ]
             }
           ],
           "from": {
@@ -52,11 +56,8 @@
           },
           "to": [
             {
-              "key_code": "v",
-              "modifiers": [
-                "left_command",
-                "left_shift"
-              ]
+              "key_code": "d",
+              "modifiers": ["left_command"]
             }
           ],
           "type": "basic"
@@ -64,15 +65,21 @@
       ]
     },
     {
-      "description": "Leave",
+      "description": "Turn the camera on/off",
       "manipulators": [
         {
           "conditions": [
             {
-              "bundle_identifiers": [
-                "us.zoom.xos"
-              ],
+              "bundle_identifiers": ["com.google.Chrome.canary"],
               "type": "frontmost_application_if"
+            },
+            {
+              "type": "device_if",
+              "identifiers": [
+                {
+                  "vendor_id": 32905
+                }
+              ]
             }
           ],
           "from": {
@@ -83,10 +90,8 @@
           },
           "to": [
             {
-              "key_code": "w",
-              "modifiers": [
-                "left_command"
-              ]
+              "key_code": "e",
+              "modifiers": ["left_command"]
             }
           ],
           "type": "basic"

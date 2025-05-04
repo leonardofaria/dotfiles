@@ -1,6 +1,8 @@
-#!/usr/bin/env bash
+#!/bin/zsh
 
-if type "$1" >/dev/null 2>&1; then
+command=$1
+# Check if the command exists and is executable
+if whence "$1" && [ -x "$(whence "$1")" ]; then
   exit 0
 else
   exit 1

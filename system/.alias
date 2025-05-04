@@ -6,6 +6,8 @@ alias convert-heic="magick mogrify -monitor -format jpg *.HEIC"
 alias speed-test="repeat 10000 { date +\"%T\"; fast -u --single-line; sleep 1 }"
 alias branch="rm .git/index.lock; git branch --sort=-committerdate | cut -c 3- | head -n 20 | gum filter | xargs git checkout "
 alias amend-push="git commit -a --amend --no-edit --no-verify && git push -f --no-verify"
+alias feedback-push="git commit -am 'Apply code review feedback' && git push"
+alias wip-push="git commit -am 'Add WIP' && git push"
 alias update-staging="git checkout staging && git merge main && git push origin staging && git checkout -"
 
 # HSTR configuration - add this to ~/.bashrc

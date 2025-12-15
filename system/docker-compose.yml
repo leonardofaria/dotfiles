@@ -1,10 +1,26 @@
 version: "3.7"
 services:
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    container_name: jellyfin
+    ports:
+      - 8096:8096
+    restart: unless-stopped
+    volumes:
+      # Config and cache on host
+      - ~/.dotfiles/docker_config_files/jellyfin/config:/config
+      - ~/.dotfiles/docker_config_files/jellyfin/cache:/cache
+      # Media libraries (add/change as needed)
+      - /Volumes/5TB/Movies:/media/movies
+      - "/Volumes/5TB/TV Shows:/media/tv"
+    environment:
+      - TZ=America/Vancouver
+
   plextraktsync:
     image: ghcr.io/taxel/plextraktsync:0.28.17
     container_name: plextraktsync
     volumes:
-      - ~/.dotfiles/plextraktsync:/app/config
+      - ~/.dotfiles/docker_config_files/plextraktsync:/app/config
     # Run docker-compose run --rm plextraktsync
     # to create the config needed and authorize Plex / Trakt
 

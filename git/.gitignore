@@ -52,3 +52,6 @@ testem.log
 ##########################
 .idea
 .vscode
+
+# AI
+.claude/settings.local.json

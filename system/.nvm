@@ -1,11 +1,12 @@
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 if [ -f "$DOTFILES_BREW_PREFIX_NVM/nvm.sh" ]; then
-  export NVM_DIR=~/.nvm
-  source "$DOTFILES_BREW_PREFIX_NVM/nvm.sh"
+  source "$DOTFILES_BREW_PREFIX_NVM/nvm.sh" --no-use
+elif [ -s "$NVM_DIR/nvm.sh" ]; then
+  \. "$NVM_DIR/nvm.sh" --no-use
 fi
+
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 autoload -U add-zsh-hook
 load-nvmrc() {
@@ -26,4 +27,3 @@ load-nvmrc() {
   fi
 }
 add-zsh-hook chpwd load-nvmrc
-load-nvmrc

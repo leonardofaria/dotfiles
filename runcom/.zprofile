@@ -54,4 +54,19 @@ unset READLINK CURRENT_SCRIPT SCRIPT_PATH DOTFILE EXTRAFILE
 
 export DOTFILES_DIR DOTFILES_EXTRA_DIR
 
-eval "$(brew shellenv)"
+if command -v brew >/dev/null 2>&1; then
+  eval "$(brew shellenv)"
+elif [ -x /opt/homebrew/bin/brew ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [ -x /usr/local/bin/brew ]; then
+  eval "$(/usr/local/bin/brew shellenv)"
+fi
+
+if command -v mise >/dev/null 2>&1; then
+  eval "$(mise activate zsh)"
+elif [ -x /opt/homebrew/bin/mise ]; then
+  eval "$(/opt/homebrew/bin/mise activate zsh)"
+elif [ -x /usr/local/bin/mise ]; then
+  eval "$(/usr/local/bin/mise activate zsh)"
+fi
+

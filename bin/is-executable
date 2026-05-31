@@ -1,8 +1,8 @@
 #!/bin/zsh
 
-command=$1
-# Check if the command exists and is executable
-if whence "$1" && [ -x "$(whence "$1")" ]; then
+command_path="$(whence -p "$1" 2>/dev/null)"
+
+if [ -n "$command_path" ] && [ -x "$command_path" ]; then
   exit 0
 else
   exit 1

@@ -12,6 +12,8 @@ alias update-staging="git checkout staging && git merge main && git push origin 
 
 # HSTR configuration - add this to ~/.bashrc
 alias hh=hstr                    # hh to be alias for hstr
+alias claude='claude --dangerously-skip-permissions'
+alias codex='codex --dangerously-bypass-approvals-and-sandbox'
 export HISTFILE=~/.zsh_history  # ensure history file visibility
 export HSTR_CONFIG=hicolor        # get more colors
 bindkey -s "\C-r" "\eqhstr\n"     # bind hstr to Ctrl-r (for Vi mode check doc)

@@ -21,25 +21,26 @@ Check `install/Brewfile` and `install/dev/Brewfile`
 - betterzip
 - qladdict
 - qlcolorcode
-- qlimagesize
-- qlmarkdown
+- showmd
 - qlstephen
 - qlvideo
 - quicklook-csv
-- quicklook-json
 - suspicious-package
 - webpquicklook
 
 ### Other stuff also installed
 
-- Current Node via [mise](https://mise.jdx.dev/), with a few global packages:
+- Current Node via [mise](https://mise.jdx.dev/) (also installs pnpm and bun), with global packages:
+  - [@antfu/ni](https://www.npmjs.com/package/@antfu/ni)
   - [dockly](https://www.npmjs.com/package/dockly)
+  - [fast-cli](https://www.npmjs.com/package/fast-cli)
+  - [ffmpeg-progressbar-cli](https://www.npmjs.com/package/ffmpeg-progressbar-cli)
   - [list-scripts](https://www.npmjs.com/package/list-scripts)
+  - [macos-focus-mode](https://www.npmjs.com/package/macos-focus-mode)
   - [npm-check-updates](https://www.npmjs.com/package/npm-check-updates)
   - [npm-scripts-tree](https://www.npmjs.com/package/npm-scripts-tree)
   - [script-list](https://www.npmjs.com/package/script-list)
   - [space-hogs](https://www.npmjs.com/package/space-hogs)
-  - [speed-test](https://www.npmjs.com/package/speed-test)
 - [Oh my zsh](https://github.com/robbyrussell/oh-my-zsh), with powerlevel10k theme and git, npm and osx plugins
 
 ## Mac Defaults
@@ -58,13 +59,28 @@ Note: this will remove all your current dock items.
 
 Add your extra information environment variables in `system/.custom`.
 
-### VS Code
+### VS Code / Cursor
 
 Use the Sync Settings feature to restore settings from a different computer.
 
 ### Chrome
 
-Log in with a Google account to restore bookmarks, extensions, etc.
+Recommended extensions:
+
+- [Refined GitHub](https://chromewebstore.google.com/detail/refined-github/hlepfoohegkhhmjieoechaddaejaokhf)
+- [Checker Plus for Gmail](https://chromewebstore.google.com/detail/checker-plus-for-gmail/oeopbcgkkoapgobdbedcemjljbihmemj)
+- [Window Resizer](https://chromewebstore.google.com/detail/window-resizer/kkelicaakdanhinjdeammmilcgefonfh)
+  - 1504 × 833 (window) — OBS, 1/4 of window
+  - 1200 × 600 (viewport)
+- [Gmail Sender Icons](https://chromewebstore.google.com/detail/gmail-sender-icons/jniljaamodclkmphgkgkooplflhkadpg)
+- [File Icons for GitHub and GitLab](https://chromewebstore.google.com/detail/file-icons-for-github-and/ficfmibkjjnpogdcfhfokmihanoldbfe)
+- [JSON Viewer Pro](https://chromewebstore.google.com/detail/json-viewer-pro/eifflpmocdbdmepbjaopkkhbfmdgijcc)
+- [Wappalyzer](https://chromewebstore.google.com/detail/wappalyzer-technology-pro/gppongmhjkpfnbhagpmjfkannfbllamg)
+- [Raindrop](https://chromewebstore.google.com/detail/raindropio/ldgfbffkinooeloadekpmfoklnobpien)
+- [Control Panel for Twitter](https://chromewebstore.google.com/detail/control-panel-for-twitter/kpmjjdhbcfebfjgdnpjagcndoelnidfj)
+- [Claude](https://chromewebstore.google.com/detail/claude/fcoeoabgfenejglbffodgkkbkcdhcgfn)
+- [1Password](https://chromewebstore.google.com/detail/1password-%E2%80%93-password-mana/aeblfdkhhhdcdjpifhhbdiojplfjncoa)
+- [Don't F\*\*\* With Paste](https://chromewebstore.google.com/detail/dont-f-with-paste/efaagigdgamehbpimpiagfpoihlkgamh)
 
 ### ssh keys
 

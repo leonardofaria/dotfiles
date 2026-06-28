@@ -508,3 +508,17 @@ if ((${#SKIPPED_DEFAULTS[@]} > 0)); then
   echo "⚠️  Some settings were skipped:"
   printf '   - %s\n' "${SKIPPED_DEFAULTS[@]}"
 fi
+
+
+# --- Touch ID for sudo ------------------------------------------------------
+# Insert pam_tid.so above the required password module so a fingerprint
+# short-circuits the password prompt. Idempotent. Note: macOS rewrites
+# /etc/pam.d/sudo on major OS upgrades, so just re-run this script afterward.
+if ! grep -q "pam_tid.so" /etc/pam.d/sudo; then
+  echo "→ Enabling Touch ID for sudo..."
+  sudo sed -i '' -e '/^auth[[:space:]]\{1,\}include[[:space:]]\{1,\}sudo_local/a\
+auth sufficient pam_tid.so
+' /etc/pam.d/sudo
+else
+  echo "→ Touch ID for sudo already enabled, skipping."
+fi

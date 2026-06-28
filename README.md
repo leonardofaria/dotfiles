@@ -32,7 +32,7 @@ Check `install/Brewfile` and `install/dev/Brewfile`
 
 ### Other stuff also installed
 
-- Current Node via `nvm`, with a few global packages:
+- Current Node via [mise](https://mise.jdx.dev/), with a few global packages:
   - [dockly](https://www.npmjs.com/package/dockly)
   - [list-scripts](https://www.npmjs.com/package/list-scripts)
   - [npm-check-updates](https://www.npmjs.com/package/npm-check-updates)

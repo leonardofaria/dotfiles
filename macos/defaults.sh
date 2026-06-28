@@ -1,22 +1,49 @@
+# macOS defaults — compatible with macOS Tahoe (26.x)
 # Based on https://github.com/webpro/dotfiles/blob/master/macos/defaults.sh
-# I commented what I don't need
 # More commands: https://macos-defaults.com/
+#
+# Some settings (Accessibility, Safari, Mail, Spotlight exclusions) require Full
+# Disk Access for your terminal app. On Tahoe: System Settings → Privacy &
+# Security → Full Disk Access → enable Terminal (or Cursor), then restart it.
 
 # COMPUTER_NAME="MacLeozeraAir"
 
-osascript -e 'tell application "System Preferences" to quit'
+SKIPPED_DEFAULTS=()
+
+# Write a default; collect failures instead of spamming stderr.
+defaults_write() {
+  if defaults write "$@" 2>/dev/null; then
+    return 0
+  fi
+  SKIPPED_DEFAULTS+=("$*")
+  return 1
+}
+
+# Write defaults for sandboxed apps (Safari, Mail).
+write_sandboxed_defaults() {
+  local app=$1
+  shift
+  if defaults write -app "$app" "$@" 2>/dev/null; then
+    return 0
+  fi
+  SKIPPED_DEFAULTS+=("Safari/Mail: $*")
+  return 1
+}
+
+# Close System Settings so open panes don't override scripted changes
+osascript -e 'tell application "System Settings" to quit' 2>/dev/null || true
 
 # Ask for the administrator password upfront
 sudo -v
 
-# Keep-alive: update existing `sudo` time stamp until `.macos` has finished
+# Keep-alive: update existing `sudo` time stamp until this script has finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 ###############################################################################
 # General UI/UX                                                               #
 ###############################################################################
 
-# Set computer name (as done via System Preferences → Sharing)
+# Set computer name (as done via System Settings → General → Sharing)
 # sudo scutil --set ComputerName "$COMPUTER_NAME"
 # sudo scutil --set HostName "$COMPUTER_NAME"
 # sudo scutil --set LocalHostName "$COMPUTER_NAME"
@@ -57,8 +84,8 @@ defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 # Automatically quit printer app once the print jobs complete
 defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 
-# Disable the “Are you sure you want to open this application?” dialog
-defaults write com.apple.LaunchServices LSQuarantine -bool false
+# LSQuarantine no longer disables Gatekeeper prompts (removed in Big Sur+).
+# To skip quarantine on a specific download: xattr -d com.apple.quarantine /path/to/file
 
 # Disable Resume system-wide
 # defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
@@ -67,10 +94,11 @@ defaults write com.apple.LaunchServices LSQuarantine -bool false
 # defaults write com.apple.CrashReporter DialogType -string "none"
 
 # Restart automatically if the computer freezes
-sudo systemsetup -setrestartfreeze on
+# Error:-99 on stderr is a known Apple bug; the setting still applies.
+sudo systemsetup -setrestartfreeze on 2>/dev/null
 
-# Disable Notification Center and remove the menu bar icon
-# launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist 2> /dev/null
+# Disable Notification Center (legacy launchctl syntax — prefer System Settings on Tahoe)
+# launchctl bootout gui/$(id -u) /System/Library/LaunchAgents/com.apple.notificationcenterui.plist 2>/dev/null
 
 # Disable smart quotes and dashes as they’re annoying when typing code
 defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
@@ -107,20 +135,21 @@ defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 # echo -n 'a' | sudo tee /private/var/db/.AccessibilityAPIEnabled > /dev/null 2>&1
 # sudo chmod 444 /private/var/db/.AccessibilityAPIEnabled
 # TODO: avoid GUI password prompt somehow (http://apple.stackexchange.com/q/60476/4408)
-#sudo osascript -e 'tell application "System Events" to set UI elements enabled to true'
+# sudo osascript -e 'tell application "System Events" to set UI elements enabled to true'
 
 # Use scroll gesture with the Ctrl (^) modifier key to zoom
-defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
-defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
+# Requires Full Disk Access for your terminal on Tahoe.
+defaults_write com.apple.universalaccess closeViewScrollWheelToggle -bool true
+defaults_write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
 # Follow the keyboard focus while zoomed in
-defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
+defaults_write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
 
-# Disable press-and-hold for keys in favor of key repeat
-# defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+# Required on Sequoia/Tahoe for custom key repeat rates to take effect
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
-# Set a blazingly fast keyboard repeat rate
+# Set a blazingly fast keyboard repeat rate (logout/restart may be required)
 defaults write NSGlobalDomain KeyRepeat -int 1
-defaults write NSGlobalDomain InitialKeyRepeat -int 15
+defaults write NSGlobalDomain InitialKeyRepeat -int 10
 
 # Automatically illuminate built-in MacBook keyboard in low light
 defaults write com.apple.BezelServices kDim -bool true
@@ -141,8 +170,8 @@ defaults write NSGlobalDomain AppleMetricUnits -bool true
 # Disable auto-correct
 # defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
-# Stop iTunes from responding to the keyboard media keys
-# launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null
+# Stop Music from responding to the keyboard media keys
+# launchctl bootout gui/$(id -u) /System/Library/LaunchAgents/com.apple.rcd.plist 2>/dev/null
 
 ###############################################################################
 # Screen                                                                      #
@@ -155,13 +184,13 @@ defaults write com.apple.screensaver askForPasswordDelay -int 0
 # Save screenshots to the desktop
 defaults write com.apple.screencapture location -string "${HOME}/Desktop"
 
-# Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
+# Save screenshots in JPG format (other options: png, bmp, gif, pdf, tiff)
 defaults write com.apple.screencapture type -string "jpg"
 
 # Disable shadow in screenshots
 defaults write com.apple.screencapture disable-shadow -bool true
 
-# Enable subpixel font rendering on non-Apple LCDs
+# Font smoothing strength (mostly relevant for non-Retina external displays)
 defaults write NSGlobalDomain AppleFontSmoothing -int 2
 
 ###############################################################################
@@ -174,7 +203,7 @@ defaults write NSGlobalDomain AppleFontSmoothing -int 2
 # Finder: disable window animations and Get Info animations
 # defaults write com.apple.finder DisableAllAnimations -bool true
 
-# Finder: show hidden files by default
+# Finder: show hidden files by default (also toggle with ⌘⇧.)
 defaults write com.apple.finder AppleShowAllFiles -bool true
 
 # Finder: show all filename extensions
@@ -210,10 +239,9 @@ defaults write com.apple.frameworks.diskimages skip-verify -bool true
 defaults write com.apple.frameworks.diskimages skip-verify-locked -bool true
 defaults write com.apple.frameworks.diskimages skip-verify-remote -bool true
 
-# Use AirDrop over every interface.
+# Use AirDrop over every interface
 defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
 
-# Always open everything in Finder's list view.
 # Use list view in all Finder windows by default
 # Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
 defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
@@ -229,7 +257,7 @@ defaults write com.apple.finder WarnOnEmptyTrash -bool false
 defaults write com.apple.finder FXInfoPanesExpanded -dict General -bool true OpenWith -bool true Privileges -bool true
 
 ###############################################################################
-# Dock                                                                        #
+# Dock & Mission Control                                                      #
 ###############################################################################
 
 # Show indicator lights for open applications in the Dock
@@ -247,18 +275,8 @@ defaults write com.apple.dock showhidden -bool true
 # No bouncing icons
 # defaults write com.apple.dock no-bouncing -bool true
 
-###############################################################################
-# Dashboard                                                                   #
-###############################################################################
-
 # Speed up Mission Control animations
 defaults write com.apple.dock expose-animation-duration -float 0.1
-
-# Disable Dashboard
-defaults write com.apple.dashboard mcx-disabled -bool true
-
-# Don’t show Dashboard as a Space
-defaults write com.apple.dock dashboard-in-overlay -bool true
 
 ###############################################################################
 # Hot corners                                                                 #
@@ -271,7 +289,6 @@ defaults write com.apple.dock dashboard-in-overlay -bool true
 # 4: Desktop
 # 5: Start screen saver
 # 6: Disable screen saver
-# 7: Dashboard
 # 10: Put display to sleep
 # 11: Launchpad
 # 12: Notification Center
@@ -297,45 +314,42 @@ defaults write com.apple.dock wvous-br-modifier -int 0
 ###############################################################################
 
 # Privacy: don’t send search queries to Apple
-defaults write com.apple.Safari UniversalSearchEnabled -bool false
-defaults write com.apple.Safari SuppressSearchSuggestions -bool true
+write_sandboxed_defaults Safari UniversalSearchEnabled -bool false
+write_sandboxed_defaults Safari SuppressSearchSuggestions -bool true
 
 # Press Tab to highlight each item on a web page
-defaults write com.apple.Safari WebKitTabToLinksPreferenceKey -bool true
-defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2TabsToLinks -bool true
+write_sandboxed_defaults Safari WebKitTabToLinksPreferenceKey -bool true
+write_sandboxed_defaults Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2TabsToLinks -bool true
 
-# Show the full URL in the address bar (note: this still hides the scheme)
-defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
+# Show the full URL in the address bar
+write_sandboxed_defaults Safari ShowFullURLInSmartSearchField -bool true
 
 # Set Safari’s home page to `about:blank` for faster loading
-defaults write com.apple.Safari HomePage -string "about:blank"
+write_sandboxed_defaults Safari HomePage -string "about:blank"
 
 # Prevent Safari from opening ‘safe’ files automatically after downloading
-defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
+write_sandboxed_defaults Safari AutoOpenSafeDownloads -bool false
 
 # Allow hitting the Backspace key to go to the previous page in history
-defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled -bool true
+write_sandboxed_defaults Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled -bool true
 
 # Hide Safari’s bookmarks bar by default
-defaults write com.apple.Safari ShowFavoritesBar -bool false
+write_sandboxed_defaults Safari ShowFavoritesBar -bool false
 
 # Disable Safari’s thumbnail cache for History and Top Sites
-defaults write com.apple.Safari DebugSnapshotsUpdatePolicy -int 2
+write_sandboxed_defaults Safari DebugSnapshotsUpdatePolicy -int 2
 
 # Hide Safari’s sidebar in Top Sites
-defaults write com.apple.Safari ShowSidebarInTopSites -bool false
+write_sandboxed_defaults Safari ShowSidebarInTopSites -bool false
 
 # Remove useless icons from Safari’s bookmarks bar
-defaults write com.apple.Safari ProxiesInBookmarksBar "()"
-
-# Allow hitting the Backspace key to go to the previous page in history
-defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled -bool true
+write_sandboxed_defaults Safari ProxiesInBookmarksBar "()"
 
 # Enable the Develop menu, the Web Inspector, and the debug menu in Safari
-defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
-defaults write com.apple.Safari IncludeDevelopMenu -bool true
-defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
-defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true
+write_sandboxed_defaults Safari IncludeInternalDebugMenu -bool true
+write_sandboxed_defaults Safari IncludeDevelopMenu -bool true
+write_sandboxed_defaults Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
+write_sandboxed_defaults Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true
 
 # Add a context menu item for showing the Web Inspector in web views
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
@@ -345,40 +359,51 @@ defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 ###############################################################################
 
 # Display emails in threaded mode
-defaults write com.apple.mail DraftsViewerAttributes -dict-add "DisplayInThreadedMode" -string "yes"
+write_sandboxed_defaults Mail DraftsViewerAttributes -dict-add "DisplayInThreadedMode" -string "yes"
 
 # Disable send and reply animations in Mail.app
-defaults write com.apple.mail DisableReplyAnimations -bool true
-defaults write com.apple.mail DisableSendAnimations -bool true
+write_sandboxed_defaults Mail DisableReplyAnimations -bool true
+write_sandboxed_defaults Mail DisableSendAnimations -bool true
 
-# Copy email addresses as `foo@example.com` instead of `Foo Bar <foo@example.com>` in Mail.app
-defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
+# Copy email addresses as `foo@example.com` instead of `Foo Bar <foo@example.com>`
+write_sandboxed_defaults Mail AddressesIncludeNameOnPasteboard -bool false
 
 # Disable inline attachments (just show the icons)
-defaults write com.apple.mail DisableInlineAttachmentViewing -bool true
+write_sandboxed_defaults Mail DisableInlineAttachmentViewing -bool true
 
 # Disable automatic spell checking
-defaults write com.apple.mail SpellCheckingBehavior -string "NoSpellCheckingEnabled"
+write_sandboxed_defaults Mail SpellCheckingBehavior -string "NoSpellCheckingEnabled"
 
 # Disable sound for incoming mail
-defaults write com.apple.mail MailSound -string ""
+write_sandboxed_defaults Mail MailSound -string ""
 
 # Disable sound for other mail actions
-defaults write com.apple.mail PlayMailSounds -bool false
+write_sandboxed_defaults Mail PlayMailSounds -bool false
 
 # Mark all messages as read when opening a conversation
-defaults write com.apple.mail ConversationViewMarkAllAsRead -bool true
+write_sandboxed_defaults Mail ConversationViewMarkAllAsRead -bool true
 
 ###############################################################################
 # Spotlight                                                                   #
 ###############################################################################
 
-# Hide Spotlight tray-icon (and subsequent helper)
-sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
-# Disable Spotlight indexing for any volume that gets mounted and has not yet
-# been indexed before.
-# Use `sudo mdutil -i off "/Volumes/foo"` to stop indexing any volume.
-sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Volumes"
+# Hide Spotlight icon in the menu bar (⌘Space still works)
+defaults -currentHost write com.apple.Spotlight MenuItemHidden -int 1
+
+# Disable Spotlight indexing for mounted volumes (optional; plist may not exist on Tahoe).
+# To exclude /Volumes manually: System Settings → Siri & Spotlight → Spotlight Privacy → add /Volumes
+for SPOTLIGHT_VOLUME_CONFIG in \
+  "/System/Volumes/Data/.Spotlight-V100/VolumeConfiguration.plist" \
+  "/.Spotlight-V100/VolumeConfiguration.plist"; do
+  if [[ -f "$SPOTLIGHT_VOLUME_CONFIG" ]]; then
+    if ! sudo /usr/libexec/PlistBuddy -c "Print :Exclusions" "$SPOTLIGHT_VOLUME_CONFIG" 2>/dev/null | grep -q '/Volumes'; then
+      sudo /usr/libexec/PlistBuddy -c "Add :Exclusions: string /Volumes/" "$SPOTLIGHT_VOLUME_CONFIG" 2>/dev/null \
+        || SKIPPED_DEFAULTS+=("Spotlight volume exclusions (could not update plist)")
+    fi
+    break
+  fi
+done
+
 # Change indexing order and disable some file types
 defaults write com.apple.spotlight orderedItems -array \
 	'{"enabled" = 1;"name" = "APPLICATIONS";}' \
@@ -471,16 +496,15 @@ defaults write com.apple.commerce AutoUpdate -bool true
 defaults write com.apple.commerce AutoUpdateRestartRequired -bool true
 
 ###############################################################################
-# Other                                                                       #
-###############################################################################
-
-# Enable Startup Chime
-nvram StartupMute=%00
-
-###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
 
-for app in "Address Book" "Calendar" "Contacts" "Dock" "Finder" "Mail" "Safari" "SystemUIServer" "iCal"; do
+for app in "Calendar" "Contacts" "ControlCenter" "Dock" "Finder" "Mail" "Safari"; do
   killall "${app}" &> /dev/null
 done
+
+if ((${#SKIPPED_DEFAULTS[@]} > 0)); then
+  echo ""
+  echo "⚠️  Some settings were skipped:"
+  printf '   - %s\n' "${SKIPPED_DEFAULTS[@]}"
+fi

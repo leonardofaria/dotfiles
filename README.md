@@ -40,8 +40,7 @@ Check `install/Brewfile` and `install/dev/Brewfile`
   - [script-list](https://www.npmjs.com/package/script-list)
   - [space-hogs](https://www.npmjs.com/package/space-hogs)
   - [speed-test](https://www.npmjs.com/package/speed-test)
-- Ruby 3 via `rvm`
-- [Oh my zsh](https://github.com/robbyrussell/oh-my-zsh), with powerlevel10k theme and git, rails, ruby, npm and osx plugins
+- [Oh my zsh](https://github.com/robbyrussell/oh-my-zsh), with powerlevel10k theme and git, npm and osx plugins
 
 ## Mac Defaults
 

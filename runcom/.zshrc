@@ -1,6 +1,6 @@
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-plugins=(git npm macos zsh-autosuggestions brew rvm)
+plugins=(git npm macos zsh-autosuggestions brew)
 
 source $ZSH/oh-my-zsh.sh
 

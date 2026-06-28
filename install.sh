@@ -35,9 +35,6 @@ echo "➡️  Setting up Brew"
 echo "➡️  Setting up Node/NPM"
 . "$DOTFILES_DIR/install/npm.sh"
 
-echo "➡️  Setting up Ruby"
-. "$DOTFILES_DIR/install/ruby.sh"
-
 echo "➡️  Setting up Mac things"
 . "$DOTFILES_DIR/macos/defaults.sh"
 

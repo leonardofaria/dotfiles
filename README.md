@@ -81,6 +81,7 @@ Recommended extensions:
 - [Claude](https://chromewebstore.google.com/detail/claude/fcoeoabgfenejglbffodgkkbkcdhcgfn)
 - [1Password](https://chromewebstore.google.com/detail/1password-%E2%80%93-password-mana/aeblfdkhhhdcdjpifhhbdiojplfjncoa)
 - [Don't F\*\*\* With Paste](https://chromewebstore.google.com/detail/dont-f-with-paste/efaagigdgamehbpimpiagfpoihlkgamh)
+- [Email Detective for Gmail](https://chromewebstore.google.com/detail/email-detective-for-gmail/jmflpchhakbogamlbfmlkglnpgfbhidl)
 
 ### ssh keys
 

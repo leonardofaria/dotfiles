@@ -104,6 +104,9 @@ sudo systemsetup -setrestartfreeze on 2>/dev/null
 defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 
+# Disable bottom left screen corner to display to sleep
+defaults write com.apple.dock wvous-bl-corner -int 1
+
 ###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
 ###############################################################################

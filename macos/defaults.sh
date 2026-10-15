@@ -108,7 +108,8 @@ defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
 ###############################################################################
 
-# Trackpad: enable tap to click for this user and for the login screen
+# Trackpad: enable tap to click for the built-in and Bluetooth trackpads
+defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
 defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
@@ -277,6 +278,12 @@ defaults write com.apple.dock showhidden -bool true
 
 # Speed up Mission Control animations
 defaults write com.apple.dock expose-animation-duration -float 0.1
+
+# Hide widgets on the desktop
+defaults write com.apple.WindowManager StandardHideWidgets -bool true
+
+# Click wallpaper to reveal desktop only in Stage Manager
+defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool false
 
 ###############################################################################
 # Hot corners                                                                 #
@@ -499,7 +506,7 @@ defaults write com.apple.commerce AutoUpdateRestartRequired -bool true
 # Kill affected applications                                                  #
 ###############################################################################
 
-for app in "Calendar" "Contacts" "ControlCenter" "Dock" "Finder" "Mail" "Safari"; do
+for app in "Calendar" "Contacts" "ControlCenter" "Dock" "Finder" "Mail" "Safari" "WindowManager"; do
   killall "${app}" &> /dev/null
 done
 

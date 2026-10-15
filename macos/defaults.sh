@@ -224,6 +224,16 @@ defaults write com.apple.finder QLEnableTextSelection -bool true
 # Display full POSIX path as Finder window title
 defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
 
+# Hide tags in the Finder sidebar
+defaults write com.apple.finder FavoriteTagNames -array
+defaults write com.apple.finder ShowRecentTags -bool false
+
+# Always show mounted volumes on the desktop
+defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
+defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
+defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
+defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
+
 # Keep folders on top when sorting by name
 defaults write com.apple.finder _FXSortFoldersFirst -bool true
 
@@ -246,8 +256,14 @@ defaults write com.apple.frameworks.diskimages skip-verify-remote -bool true
 defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
 
 # Use list view in all Finder windows by default
-# Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
+# Four-letter codes for the other view modes: `icnv`, `clmv`, `glyv`
 defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+
+# "Always open in list view" and "Browse in list view" are saved in the parent
+# folder's .DS_Store. For the home folder that parent is /Users, which is not
+# writable, so the checkboxes only last until Finder quits. Desktop is left
+# alone so its icons stay in icon view.
+python3 "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/set-finder-list-view.py"
 
 # Disable the warning before emptying the Trash
 defaults write com.apple.finder WarnOnEmptyTrash -bool false

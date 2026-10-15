@@ -1,20 +1,20 @@
-version: "3.7"
+# version: "3.7"
 services:
-  jellyfin:
-    image: jellyfin/jellyfin:latest
-    container_name: jellyfin
-    ports:
-      - 8096:8096
-    restart: unless-stopped
-    volumes:
-      # Config and cache on host
-      - ~/.dotfiles/docker_config_files/jellyfin/config:/config
-      - ~/.dotfiles/docker_config_files/jellyfin/cache:/cache
-      # Media libraries (add/change as needed)
-      - /Volumes/5TB/Movies:/media/movies
-      - "/Volumes/5TB/TV Shows:/media/tv"
-    environment:
-      - TZ=America/Vancouver
+  # jellyfin:
+  #   image: jellyfin/jellyfin:latest
+  #   container_name: jellyfin
+  #   ports:
+  #     - 8096:8096
+  #   restart: unless-stopped
+  #   volumes:
+  #     # Config and cache on host
+  #     - ~/.dotfiles/docker_config_files/jellyfin/config:/config
+  #     - ~/.dotfiles/docker_config_files/jellyfin/cache:/cache
+  #     # Media libraries (add/change as needed)
+  #     - /Volumes/5TB/Movies:/media/movies
+  #     - "/Volumes/5TB/TV Shows:/media/tv"
+  #   environment:
+  #     - TZ=America/Vancouver
 
   plextraktsync:
     image: ghcr.io/taxel/plextraktsync:0.28.17
@@ -24,25 +24,25 @@ services:
     # Run docker-compose run --rm plextraktsync
     # to create the config needed and authorize Plex / Trakt
 
-  ftpd-server:
-    image: stilliard/pure-ftpd:hardened
-    container_name: ftpd-server
-    ports:
-      - 21:21
-      - 20:20
-      - 30000-30009:30000-30009
-    environment:
-      # export LOCAL_IP=$(ipconfig getifaddr en0)
-      # export FTP_USER="myuser"
-      # export FTP_PASS="mypassword"
-      PUBLICHOST: $LOCAL_IP
-      FTP_USER_NAME: $FTP_USER
-      FTP_USER_PASS: $FTP_PASS
-      FTP_USER_HOME: /home/ftpuser
-      ADDED_FLAGS: -d -d
-    restart: on-failure
-    volumes:
-      - ~/ftp:/home/ftpuser
+  # ftpd-server:
+  #   image: stilliard/pure-ftpd:hardened
+  #   container_name: ftpd-server
+  #   ports:
+  #     - 21:21
+  #     - 20:20
+  #     - 30000-30009:30000-30009
+  #   environment:
+  #     # export LOCAL_IP=$(ipconfig getifaddr en0)
+  #     # export FTP_USER="myuser"
+  #     # export FTP_PASS="mypassword"
+  #     PUBLICHOST: $LOCAL_IP
+  #     FTP_USER_NAME: $FTP_USER
+  #     FTP_USER_PASS: $FTP_PASS
+  #     FTP_USER_HOME: /home/ftpuser
+  #     ADDED_FLAGS: -d -d
+  #   restart: on-failure
+  #   volumes:
+  #     - ~/ftp:/home/ftpuser
 
   surfshark:
     image: haugene/transmission-openvpn
@@ -76,14 +76,14 @@ services:
     network_mode: service:surfshark
     restart: always
 
-  easydocker:
-    image: qfdk/easydockerweb
-    container_name: easydocker
-    environment:
-      EDW_USERNAME: $EASYDOCKERWEB_USER
-      EDW_PASSWORD: $EASYDOCKERWEB_PASS
-    ports:
-      - 3000:3000
-    restart: always
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+  # easydocker:
+  #   image: qfdk/easydockerweb
+  #   container_name: easydocker
+  #   environment:
+  #     EDW_USERNAME: $EASYDOCKERWEB_USER
+  #     EDW_PASSWORD: $EASYDOCKERWEB_PASS
+  #   ports:
+  #     - 3000:3000
+  #   restart: always
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock

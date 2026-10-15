@@ -108,11 +108,13 @@ defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
 ###############################################################################
 
-# Trackpad: enable tap to click for the built-in and Bluetooth trackpads
+# Trackpad: enable tap to click for the built-in and Bluetooth trackpads.
+# The driver keeps the previous Clicking value until settings are activated.
 defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
 defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
 
 # Trackpad: map bottom right corner to right-click
 # defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2

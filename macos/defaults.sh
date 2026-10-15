@@ -259,10 +259,14 @@ defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
 # Four-letter codes for the other view modes: `icnv`, `clmv`, `glyv`
 defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 
-# "Always open in list view" and "Browse in list view" are saved in the parent
-# folder's .DS_Store. For the home folder that parent is /Users, which is not
-# writable, so the checkboxes only last until Finder quits. Desktop is left
-# alone so its icons stay in icon view.
+# Recents is a search, not a folder, so it does not use .DS_Store. These two
+# keys are its saved view. Other sidebar items are folders and ignore them.
+defaults write com.apple.finder SearchRecentsSavedViewStyle -string "Nlsv"
+defaults write com.apple.finder FXPreferredSearchViewStyle -string "Nlsv"
+
+# Sidebar folders such as Applications store "always open in icon view" in
+# their own .DS_Store. Opening one switches the window to icons, and every
+# folder without its own list view then follows. Desktop icons are left alone.
 python3 "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/set-finder-list-view.py"
 
 # Disable the warning before emptying the Trash

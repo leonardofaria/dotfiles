@@ -267,6 +267,9 @@ defaults write com.apple.finder FXPreferredSearchViewStyle -string "Nlsv"
 # Sidebar folders such as Applications store "always open in icon view" in
 # their own .DS_Store. Opening one switches the window to icons, and every
 # folder without its own list view then follows. Desktop icons are left alone.
+# The script writes the current user's files itself, then uses sudo for
+# /Users/.DS_Store so the home folder keeps list view. Do not run it under
+# sudo: that would target root's home instead of this user.
 python3 "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/set-finder-list-view.py"
 
 # Disable the warning before emptying the Trash

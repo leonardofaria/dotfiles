@@ -92,7 +92,8 @@ def with_list_view(entries, names, template):
 
 
 def run_as_root(script):
-    result = subprocess.run(["sudo", "-n", "sh", "-c", script], check=False)
+    # Use the sudo timestamp from defaults.sh. Prompt if it has expired.
+    result = subprocess.run(["sudo", "sh", "-c", script], check=False)
     if result.returncode != 0:
         raise PermissionError("sudo is required to update /Users/.DS_Store")
 
@@ -134,7 +135,7 @@ def main():
     if os.path.exists(users_store) and not os.access(users_store, os.R_OK):
         fd, readable = tempfile.mkstemp(prefix="Users.DS_Store.read.")
         os.close(fd)
-        subprocess.run(["sudo", "-n", "cp", users_store, readable], check=True)
+        subprocess.run(["sudo", "cp", users_store, readable], check=True)
     try:
         users_entries = with_list_view(load_entries(readable), [home.name], template)
     finally:

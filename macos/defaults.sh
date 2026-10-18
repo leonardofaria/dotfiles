@@ -104,6 +104,10 @@ sudo systemsetup -setrestartfreeze on 2>/dev/null
 defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 
+# Show battery percentage in the menu bar
+defaults write com.apple.controlcenter BatteryShowPercentage -bool true
+killall ControlCenter
+
 ###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
 ###############################################################################

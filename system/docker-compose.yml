@@ -44,6 +44,51 @@ services:
   #   volumes:
   #     - ~/ftp:/home/ftpuser
 
+  # Hermes Agent + Web UI. The web UI image bundles the Hermes runtime and
+  # starts every profile's gateway itself, so it is the only long-running
+  # Hermes container. Don't run it alongside another machine's gateways for
+  # the same profiles: the Telegram bots would fight over polling.
+  # Login token: cat ~/.dotfiles/docker_config_files/hermes/hermes-web-ui/.token
+  hermes-webui:
+    image: ekkoye8888/hermes-web-ui:latest
+    container_name: hermes-webui
+    ports:
+      - 6060:6060
+    volumes:
+      - ~/.dotfiles/docker_config_files/hermes:/home/agent/.hermes
+      - ~/.dotfiles/docker_config_files/hermes/hermes-web-ui:/home/agent/.hermes-web-ui
+      # kingsgatemanor's Outlook MCP (venv is Linux-only, built in-container)
+      - ~/.dotfiles/docker_config_files/outlook-hermes-mcp:/home/agent/outlook-hermes-mcp
+      # kingsgatemanor's docker terminal backend spawns sibling containers,
+      # so its docker_volumes use host paths
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      PORT: 6060
+      HERMES_HOME: /home/agent/.hermes
+      HERMES_BIN: /opt/hermes/.venv/bin/hermes
+      HERMES_WEB_UI_MANAGED_GATEWAY: 1
+      HERMES_ALLOW_ROOT_GATEWAY: 1
+      TZ: America/Vancouver
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+
+  # One-off Hermes CLI against the same data:
+  # docker compose run --rm hermes profile list
+  # Bypasses the image's s6 init, which would otherwise autostart every
+  # gateway recorded in gateway_state.json.
+  hermes:
+    image: nousresearch/hermes-agent:latest
+    profiles: [hermes-cli]
+    entrypoint: [/opt/hermes/.venv/bin/hermes]
+    init: true
+    volumes:
+      - ~/.dotfiles/docker_config_files/hermes:/opt/data
+    environment:
+      HOME: /opt/data
+      HERMES_HOME: /opt/data
+      TZ: America/Vancouver
+
   surfshark:
     image: haugene/transmission-openvpn
     container_name: surfshark
